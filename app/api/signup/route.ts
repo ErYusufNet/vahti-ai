@@ -13,6 +13,10 @@ export async function POST(req: Request) {
   const body = (await req.json().catch(() => ({}))) as Record<string, unknown>;
   const name = String(body.name ?? "").trim();
   const clinicName = String(body.clinicName ?? "").trim();
+  const city = String(body.city ?? "").trim();
+  const sector = String(body.sector ?? "").trim();
+  const validPlans = ["essential", "professional", "business", "enterprise"];
+  const plan = validPlans.includes(String(body.plan)) ? String(body.plan) : "essential";
   const email = String(body.email ?? "").trim().toLowerCase();
   const password = String(body.password ?? "");
 
@@ -53,7 +57,10 @@ export async function POST(req: Request) {
       data: {
         ad: clinicName || `${name} — klinikka`,
         email,
+        sehir: city || null,
+        sektor: sector || null,
         ulke: "FI",
+        plan,
       },
     });
     await tx.kullanici.create({

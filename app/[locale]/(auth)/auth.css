@@ -153,3 +153,103 @@
 .auth-demo code {
   font-weight: 700;
 }
+
+/* GÖREV D — monivaiheinen rekisteröinti */
+.auth-card--wide {
+  max-width: 480px;
+}
+.auth-steps {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0 0 1.4rem;
+  font-size: 0.78rem;
+  color: var(--a-muted);
+}
+.auth-steps li {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--a-line);
+}
+.auth-steps li span {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--a-line);
+  color: var(--a-ink);
+  font-weight: 700;
+  font-size: 0.72rem;
+}
+.auth-steps li.is-active {
+  color: var(--a-accent);
+  border-bottom-color: var(--a-accent);
+  font-weight: 700;
+}
+.auth-steps li.is-active span,
+.auth-steps li.is-done span {
+  background: var(--a-accent);
+  color: #fff;
+}
+.auth-steps li.is-done {
+  border-bottom-color: var(--a-accent);
+}
+
+.auth-form select {
+  border: 1px solid var(--a-line);
+  border-radius: 10px;
+  padding: 0.65rem 0.8rem;
+  font: inherit;
+  font-weight: 400;
+  background: #f8fafc;
+}
+
+.auth-plans {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.auth-plan {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid var(--a-line);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  font-weight: 400;
+}
+.auth-plan.is-selected {
+  border-color: var(--a-accent);
+  background: #eff6ff;
+}
+.auth-plan__name {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.auth-plan__name em {
+  color: var(--a-accent);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.auth-plan__price {
+  font-size: 0.85rem;
+  color: var(--a-muted);
+  white-space: nowrap;
+}
+
+.auth-wizard-nav {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.4rem;
+}
+.auth-wizard-nav .auth-btn {
+  flex: 1;
+}

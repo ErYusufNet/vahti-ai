@@ -33,7 +33,7 @@ export async function PlanCards() {
               </a>
             ) : (
               <Link
-                href="/signup"
+                href={{ pathname: "/signup", query: { plan: p } }}
                 className={`mkt-btn ${popular ? "mkt-btn--primary" : "mkt-btn--light"}`}
               >
                 {t("cta")}

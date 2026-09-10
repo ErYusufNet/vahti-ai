@@ -84,7 +84,7 @@ export async function PricingTable({ featuredOnly = false }: { featuredOnly?: bo
                   </a>
                 ) : (
                   <Link
-                    href="/signup"
+                    href={{ pathname: "/signup", query: { plan: p } }}
                     className={`mkt-btn mkt-btn--sm ${
                       p === POPULAR_PLAN ? "mkt-btn--primary" : "mkt-btn--light"
                     }`}

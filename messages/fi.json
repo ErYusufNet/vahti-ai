@@ -303,7 +303,20 @@
     "demoHint": "Kokeile demo-tunnuksilla:",
     "fillDemo": "Täytä demo-tunnukset",
     "demoSignup": "Tietokantaa ei ole käytössä — kirjaudu demo-tunnuksilla.",
-    "logout": "Kirjaudu ulos"
+    "logout": "Kirjaudu ulos",
+    "step1": "Klinikka",
+    "step2": "Paketti",
+    "step3": "Tili",
+    "city": "Kaupunki",
+    "sector": "Toimiala",
+    "sector_dental": "Hammaslääkäri",
+    "sector_aesthetic": "Estetiikka",
+    "sector_hair": "Hiustensiirto",
+    "sector_physio": "Fysioterapia",
+    "sector_other": "Muu",
+    "clinicNameRequired": "Anna klinikan nimi.",
+    "back": "Takaisin",
+    "next": "Jatka"
   },
   "Nav": {
     "sectionMain": "Yleis",

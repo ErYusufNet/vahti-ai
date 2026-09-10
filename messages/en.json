@@ -303,7 +303,20 @@
     "demoHint": "Try the demo credentials:",
     "fillDemo": "Fill demo credentials",
     "demoSignup": "No database available — log in with the demo credentials.",
-    "logout": "Log out"
+    "logout": "Log out",
+    "step1": "Clinic",
+    "step2": "Plan",
+    "step3": "Account",
+    "city": "City",
+    "sector": "Sector",
+    "sector_dental": "Dental",
+    "sector_aesthetic": "Aesthetics",
+    "sector_hair": "Hair transplant",
+    "sector_physio": "Physiotherapy",
+    "sector_other": "Other",
+    "clinicNameRequired": "Please enter the clinic name.",
+    "back": "Back",
+    "next": "Continue"
   },
   "Nav": {
     "sectionMain": "Main",

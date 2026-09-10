@@ -24,6 +24,7 @@ model Klinik {
   sektor     String?
   aiDili     String   @default("fi")
   saatDilimi String   @default("Europe/Helsinki")
+  plan       String   @default("essential") // essential | professional | business | enterprise
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
