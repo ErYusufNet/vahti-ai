@@ -1214,3 +1214,54 @@
 .mkt-demochat__input .mkt-btn {
   border-radius: 10px;
 }
+
+/* ===========================================================================
+   GÖREV B + E — lomakkeet (kumppanit / yhteystiedot)
+   =========================================================================== */
+.mkt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.6rem;
+  box-shadow: 0 12px 30px -18px rgba(15, 23, 42, 0.16);
+}
+.mkt-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.mkt-form input,
+.mkt-form textarea {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.65rem 0.8rem;
+  font: inherit;
+  font-weight: 400;
+  background: var(--paper);
+  resize: vertical;
+}
+.mkt-form input:focus,
+.mkt-form textarea:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.35);
+  outline-offset: 1px;
+  background: #fff;
+}
+.mkt-form .mkt-btn {
+  justify-content: center;
+  margin-top: 0.3rem;
+}
+.mkt-form__ok {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #047857;
+  border-radius: 12px;
+  padding: 1.2rem 1.4rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
