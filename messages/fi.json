@@ -431,8 +431,7 @@
     "leaveMessage": "Jätä viesti",
     "sentBody": "Kiitos! Otamme sinuun yhteyttä pian.",
     "assignedTo": "Ohjattu tiimin jäsenelle",
-    "fullTitle": "Puhu",
-    "fullSubtitle": "-klinikan tekoälyvastaanotolle"
+    "fullHeading": "Puhu {clinic} -klinikan tekoälyvastaanotolle"
   },
   "Nav": {
     "sectionMain": "Yleis",
@@ -606,7 +605,21 @@
     "roleOmistaja": "Omistaja",
     "roleVastaanotto": "Vastaanotto",
     "roleHoitaja": "Hoitaja",
-    "readonlyNotice": "Demo — muutoksia ei tallenneta."
+    "readonlyNotice": "Demo — muutoksia ei tallenneta.",
+    "shareTitle": "Jaettava puhelulinkki",
+    "shareSub": "Jaa tämä linkki tai QR-koodi — potilas pääsee suoraan tekoälyvastaanottoon selaimessa.",
+    "shareCopy": "Kopioi linkki",
+    "shareCopied": "Kopioitu!",
+    "shareDownload": "Lataa QR (PNG)",
+    "backupTitle": "Varayhteys (PSTN)",
+    "backupSub": "Jos widget/tekoäly ei vastaa, yhteydenotto ohjataan tähän numeroon.",
+    "backupLabel": "Varanumero",
+    "backupSave": "Tallenna",
+    "backupSaved": "Tallennettu.",
+    "backupDemoNote": "Ei tallennettu — vaatii tietokannan (DATABASE_URL + npm run db:push).",
+    "backupTwilioOn": "Soitonsiirto varanumeroon on käytössä (Twilio).",
+    "backupTwilioTodo": "TODO: oikea soitonsiirto varanumeroon vaatii TWILIO_ACCOUNT_SID:n .env-tiedostossa. Ilman sitä siirto on simuloitu (arayüzde näytetään).",
+    "teamRoutingNote": "Uudet yhteydenottopyynnöt jaetaan tälle tiimille round-robin -periaatteella (näkyy Yhteydenottopyynnöt-välilehdellä)."
   },
   "Channels": {
     "whatsapp": "WhatsApp",

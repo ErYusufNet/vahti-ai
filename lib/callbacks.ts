@@ -152,13 +152,14 @@ export async function getBackupNumber(slug?: string): Promise<string | null> {
 export async function getClinicBySlug(
   slug: string,
 ): Promise<{ ad: string; slug: string; varayhteysNumero: string | null } | null> {
-  if (slug === MOCK_CLINIC.slug || !(await isDbAvailable())) {
+  if (slug === MOCK_CLINIC.slug) {
     return {
       ad: MOCK_CLINIC.ad,
       slug: MOCK_CLINIC.slug,
       varayhteysNumero: MOCK_CLINIC.varayhteysNumero,
     };
   }
+  if (!(await isDbAvailable())) return null;
   return withDb(
     async (db) => {
       const k = await db.klinik.findUnique({ where: { slug } });

@@ -431,8 +431,7 @@
     "leaveMessage": "Leave a message",
     "sentBody": "Thanks! We'll be in touch soon.",
     "assignedTo": "Routed to team member",
-    "fullTitle": "Talk to",
-    "fullSubtitle": "'s AI reception"
+    "fullHeading": "Talk to {clinic}'s AI reception"
   },
   "Nav": {
     "sectionMain": "Main",
@@ -606,7 +605,21 @@
     "roleOmistaja": "Owner",
     "roleVastaanotto": "Reception",
     "roleHoitaja": "Nurse",
-    "readonlyNotice": "Demo — changes are not saved."
+    "readonlyNotice": "Demo — changes are not saved.",
+    "shareTitle": "Shareable call link",
+    "shareSub": "Share this link or QR code — the patient reaches the AI reception directly in the browser.",
+    "shareCopy": "Copy link",
+    "shareCopied": "Copied!",
+    "shareDownload": "Download QR (PNG)",
+    "backupTitle": "Backup connection (PSTN)",
+    "backupSub": "If the widget/AI doesn't answer, the enquiry is forwarded to this number.",
+    "backupLabel": "Backup number",
+    "backupSave": "Save",
+    "backupSaved": "Saved.",
+    "backupDemoNote": "Not saved — requires a database (DATABASE_URL + npm run db:push).",
+    "backupTwilioOn": "Call forwarding to the backup number is active (Twilio).",
+    "backupTwilioTodo": "TODO: real call forwarding to the backup number requires TWILIO_ACCOUNT_SID in .env. Without it, forwarding is simulated (shown in the UI).",
+    "teamRoutingNote": "New callback requests are assigned to this team round-robin (visible on the Callback requests tab)."
   },
   "Channels": {
     "whatsapp": "WhatsApp",

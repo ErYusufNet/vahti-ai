@@ -1,7 +1,10 @@
 import { getTranslations } from "next-intl/server";
 import { clinic, users } from "@/lib/mock/data";
-import { integrationStatus } from "@/lib/env";
+import { integrationStatus, env } from "@/lib/env";
 import { isDbAvailable } from "@/lib/db";
+import { getBackupNumber } from "@/lib/callbacks";
+import { ShareLinkCard } from "@/components/dashboard/ShareLinkCard";
+import { BackupNumberForm } from "@/components/dashboard/BackupNumberForm";
 
 /** Asetukset — klinikan tiedot ja tiimi (mock, lukutila). */
 export default async function SettingsPage() {
@@ -31,6 +34,9 @@ export default async function SettingsPage() {
     { name: "ElevenLabs (TTS)", live: st.elevenlabs, task: "9" },
   ];
 
+  const backupNumber = await getBackupNumber();
+  const dbUp = await isDbAvailable();
+
   const roleLabel = (r: string) =>
     r === "omistaja"
       ? t("roleOmistaja")
@@ -57,6 +63,24 @@ export default async function SettingsPage() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* GÖREV B — jaettava puhelulinkki + QR */}
+      <div className="card" style={{ marginBottom: "1.2rem" }}>
+        <div className="section-title">{t("shareTitle")}</div>
+        <p className="dash-page-sub">{t("shareSub")}</p>
+        <ShareLinkCard slug={clinic.slug} baseUrl={env.appBaseUrl()} />
+      </div>
+
+      {/* GÖREV C — PSTN-varayhteys */}
+      <div className="card" style={{ marginBottom: "1.2rem" }}>
+        <div className="section-title">{t("backupTitle")}</div>
+        <p className="dash-page-sub">{t("backupSub")}</p>
+        <BackupNumberForm
+          initial={backupNumber ?? ""}
+          canSave={dbUp}
+          twilioConfigured={integrationStatus().twilio}
+        />
       </div>
 
       <div className="card" style={{ padding: 0, overflow: "hidden", marginBottom: "1.2rem" }}>
@@ -91,6 +115,7 @@ export default async function SettingsPage() {
       <div className="card" style={{ padding: 0, overflow: "hidden" }}>
         <div style={{ padding: "1rem 1.1rem 0" }}>
           <div className="section-title">{t("teamTitle")}</div>
+          <p className="dash-page-sub">{t("teamRoutingNote")}</p>
         </div>
         <table className="tbl">
           <thead>
