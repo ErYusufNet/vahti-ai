@@ -33,15 +33,17 @@ model Klinik {
   ajanvaraukset Appointment[]
 }
 
-/// Klinikan käyttäjä (tiimin jäsen).
+/// Klinikan käyttäjä (tiimin jäsen) + kirjautumistiedot (GÖREV C).
 model Kullanici {
-  id       String @id @default(cuid())
-  klinikId String
-  ad       String
-  email    String @unique
-  rol      String @default("uye")
+  id           String   @id @default(cuid())
+  klinikId     String?
+  ad           String
+  email        String   @unique
+  rol          String   @default("uye")
+  passwordHash String? // bcrypt-tiiviste (Credentials-kirjautuminen)
+  createdAt    DateTime @default(now())
 
-  klinik Klinik @relation(fields: [klinikId], references: [id], onDelete: Cascade)
+  klinik Klinik? @relation(fields: [klinikId], references: [id], onDelete: SetNull)
 
   @@index([klinikId])
 }

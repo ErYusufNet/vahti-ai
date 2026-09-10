@@ -567,3 +567,19 @@
   font: inherit;
   background: var(--bg);
 }
+
+/* GÖREV C — uloskirjautuminen */
+.dash-logout {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+  border-radius: 7px;
+  padding: 0.3rem 0.7rem;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.dash-logout:hover {
+  color: var(--text);
+  background: var(--surface);
+}
