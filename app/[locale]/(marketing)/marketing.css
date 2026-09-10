@@ -1265,3 +1265,50 @@
   font-size: 0.95rem;
   text-align: center;
 }
+
+/* ===========================================================================
+   GÖREV E — kurumsal sayfalar
+   =========================================================================== */
+.mkt-prose {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+.mkt-founder {
+  text-align: center;
+}
+.mkt-founder__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin: 0 auto 0.9rem;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+}
+.mkt-legal-disclaimer {
+  background: #fef3e2;
+  border: 1px solid #f2d4ac;
+  color: #9a5b12;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 1.6rem;
+}
+.mkt-legal-section {
+  margin-bottom: 1.6rem;
+}
+.mkt-legal-section h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.mkt-legal-updated {
+  margin-top: 2rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
