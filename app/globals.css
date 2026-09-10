@@ -33,35 +33,7 @@ a {
   text-decoration: none;
 }
 
-/* --- Header --- */
-.site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.9rem 1.5rem;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-}
-
-.brand {
-  font-weight: 700;
-  font-size: 1.15rem;
-  letter-spacing: 0.2px;
-}
-
-.site-header__right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.site-header__tagline {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-/* --- Locale switcher --- */
+/* --- Locale switcher (jaettu: dashboardin yläpalkki + markkinointiheader) --- */
 .locale-switcher {
   display: inline-flex;
   align-items: center;
@@ -92,33 +64,4 @@ a {
   color: var(--accent);
   font-weight: 700;
   cursor: default;
-}
-
-/* --- Layout --- */
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem;
-}
-
-.hero h1 {
-  font-size: 2.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.hero .lead {
-  font-size: 1.1rem;
-  color: var(--muted);
-  max-width: 46ch;
-}
-
-.hero .note {
-  margin-top: 2rem;
-  padding: 0.9rem 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: 6px;
-  font-size: 0.9rem;
-  color: var(--muted);
 }

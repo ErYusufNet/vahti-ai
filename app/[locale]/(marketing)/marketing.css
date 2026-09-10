@@ -1,0 +1,720 @@
+/* ===========================================================================
+   Vahti AI · markkinointisivun tyylit
+   Väriajatus (docs Bölüm 2): koyu antrasiitti header/hero + açık gri sisältö,
+   yksi vurgu (buz mavisi). Derinlik: katmanlı gölgeler + hover-nosto.
+   =========================================================================== */
+
+.mkt {
+  --ink: #0f172a; /* antrasiitti */
+  --ink-2: #1e293b;
+  --paper: #f8fafc; /* açık gri sisältö */
+  --card: #ffffff;
+  --line: #e2e8f0;
+  --text: #0f172a;
+  --muted: #64748b;
+  --accent: #3b82f6;
+  --accent-2: #38bdf8;
+  --on-dark: #e2e8f0;
+  --on-dark-muted: #94a3b8;
+
+  color: var(--text);
+  background: var(--paper);
+  font-family: var(--font-inter), "Inter", "Manrope", system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  line-height: 1.6;
+  /* clip (ei hidden): estää vaakavierityksen rikkomatta kiinteää headeria */
+  overflow-x: clip;
+  scroll-padding-top: 78px; /* ankkurilinkit eivät jää fixed-headerin alle */
+}
+
+.mkt * {
+  box-sizing: border-box;
+}
+
+.mkt-shell {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+
+.mkt h1,
+.mkt h2,
+.mkt h3 {
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* --- Nappi --- */
+.mkt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 0;
+  border-radius: 12px;
+  padding: 0.85rem 1.5rem;
+  font: inherit;
+  font-weight: 650;
+  font-size: 0.98rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    background 0.16s ease;
+}
+.mkt-btn--primary {
+  color: #fff;
+  background: linear-gradient(180deg, #4f93f7, #2563eb);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 10px 24px -8px rgba(37, 99, 235, 0.6),
+    0 2px 6px -2px rgba(15, 23, 42, 0.3);
+}
+.mkt-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 18px 36px -10px rgba(37, 99, 235, 0.7),
+    0 4px 10px -2px rgba(15, 23, 42, 0.35);
+}
+.mkt-btn--ghost {
+  color: var(--on-dark);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(4px);
+}
+.mkt-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+.mkt-btn--light {
+  color: var(--ink);
+  background: #fff;
+  box-shadow: 0 8px 20px -8px rgba(15, 23, 42, 0.35);
+}
+.mkt-btn--light:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -10px rgba(15, 23, 42, 0.4);
+}
+.mkt-btn--sm {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.9rem;
+  border-radius: 10px;
+}
+
+/* --- Header (kiinteä, leijuu tumman heron päällä) --- */
+.mkt-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  border-bottom: 1px solid transparent;
+}
+.mkt-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 64px;
+}
+.mkt-header--solid {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 24px -12px rgba(0, 0, 0, 0.6);
+}
+.mkt-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+.mkt-brand__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  box-shadow: 0 0 14px 1px rgba(56, 189, 248, 0.7);
+}
+.mkt-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  margin-left: auto;
+  margin-right: 1.4rem;
+}
+.mkt-header__nav a {
+  color: var(--on-dark-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.mkt-header__nav a:hover {
+  color: #fff;
+}
+.mkt-header__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+/* LocaleSwitcher tummalla headerilla */
+.mkt-header .locale-switcher__btn {
+  color: var(--on-dark-muted);
+}
+.mkt-header .locale-switcher__btn:hover:not(:disabled) {
+  color: #fff;
+}
+.mkt-header .locale-switcher__btn[aria-current="true"] {
+  color: var(--accent-2);
+}
+.mkt-header .locale-switcher__sep {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Hero --- */
+.mkt-hero {
+  position: relative;
+  background:
+    radial-gradient(1200px 500px at 70% -10%, rgba(37, 99, 235, 0.25), transparent 60%),
+    linear-gradient(180deg, #0b1220, #0f172a 55%, #111c33);
+  color: #fff;
+  overflow: hidden;
+  isolation: isolate;
+}
+.mkt-hero__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(700px 400px at 50% 0%, #000 30%, transparent 75%);
+  z-index: -1;
+}
+.mkt-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(64px);
+  z-index: -1;
+  will-change: transform;
+  animation: mkt-float 16s ease-in-out infinite;
+}
+.mkt-orb--1 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle at 30% 30%, #38bdf8, #3b82f6 55%, transparent 72%);
+  opacity: 0.55;
+  top: -140px;
+  right: -60px;
+}
+.mkt-orb--2 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle at 40% 40%, #6366f1, #1e293b 68%, transparent);
+  opacity: 0.5;
+  bottom: -180px;
+  left: -120px;
+  animation-delay: -6s;
+}
+.mkt-orb--3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #22d3ee, transparent 68%);
+  opacity: 0.35;
+  top: 38%;
+  left: 52%;
+  animation-delay: -11s;
+}
+@keyframes mkt-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(34px, -44px) scale(1.08);
+  }
+  66% {
+    transform: translate(-22px, 26px) scale(0.94);
+  }
+}
+.mkt-hero__body {
+  padding: 88px 0 104px;
+  max-width: 720px;
+}
+.mkt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-2);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  margin-bottom: 1.5rem;
+}
+.mkt-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 8px 1px var(--accent-2);
+}
+.mkt-hero h1 {
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 800;
+}
+.mkt-hero__sub {
+  margin-top: 1.4rem;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  color: var(--on-dark);
+  max-width: 34em;
+}
+.mkt-hero__cta {
+  margin-top: 2.4rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* --- Osiot --- */
+.mkt-section {
+  padding: 84px 0;
+}
+.mkt-section--tight {
+  padding: 56px 0;
+}
+.mkt-section__head {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+.mkt-section__head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+.mkt-section h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+}
+.mkt-section__sub {
+  margin-top: 0.9rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+.mkt-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.7rem;
+}
+
+/* --- Tilastonauha --- */
+.mkt-stats {
+  background: var(--ink);
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+.mkt-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+  padding: 56px 0;
+}
+.mkt-stat {
+  text-align: center;
+  padding: 1.6rem 1rem;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 24px 40px -24px rgba(0, 0, 0, 0.6);
+}
+.mkt-stat__value {
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff, var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.mkt-stat__label {
+  margin-top: 0.4rem;
+  color: var(--on-dark-muted);
+  font-size: 0.95rem;
+}
+
+/* --- Kortit --- */
+.mkt-cards {
+  display: grid;
+  gap: 1.4rem;
+}
+.mkt-cards--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+.mkt-cards--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.mkt-cards--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.mkt-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1.7rem;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 10px 28px -14px rgba(15, 23, 42, 0.14);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.mkt-card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 2px 4px rgba(15, 23, 42, 0.06),
+    0 26px 50px -18px rgba(15, 23, 42, 0.24);
+}
+.mkt-card__icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: var(--accent);
+  background: linear-gradient(180deg, #eff6ff, #dbeafe);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 6px 14px -6px rgba(59, 130, 246, 0.4);
+  margin-bottom: 1.1rem;
+}
+.mkt-card__icon svg {
+  width: 22px;
+  height: 22px;
+}
+.mkt-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.mkt-card p {
+  margin-top: 0.55rem;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+/* --- Laskuri --- */
+.mkt-calc {
+  background: var(--ink);
+  color: #fff;
+}
+.mkt-calc__panel {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 2.2rem;
+  box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.7);
+}
+.mkt-field {
+  margin-bottom: 1.3rem;
+}
+.mkt-field:last-child {
+  margin-bottom: 0;
+}
+.mkt-field label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--on-dark-muted);
+  margin-bottom: 0.5rem;
+}
+.mkt-field__row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.mkt-field input[type="range"] {
+  flex: 1;
+  accent-color: var(--accent-2);
+}
+.mkt-field__val {
+  min-width: 74px;
+  text-align: right;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.mkt-calc__result {
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.12), rgba(37, 99, 235, 0.08));
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+.mkt-calc__result-label {
+  font-size: 0.85rem;
+  color: var(--on-dark-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.mkt-calc__big {
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin: 0.3rem 0;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+}
+.mkt-calc__yearly {
+  color: var(--accent-2);
+  font-weight: 600;
+}
+.mkt-calc__note {
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  color: var(--on-dark-muted);
+}
+
+/* --- Askeleet --- */
+.mkt-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+  counter-reset: step;
+}
+.mkt-step {
+  position: relative;
+  padding: 1.7rem;
+  border-radius: 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 28px -16px rgba(15, 23, 42, 0.16);
+}
+.mkt-step__num {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(180deg, #4f93f7, #2563eb);
+  box-shadow: 0 8px 18px -8px rgba(37, 99, 235, 0.6);
+  margin-bottom: 1rem;
+}
+.mkt-step h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.mkt-step p {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+
+/* --- Hinnoittelu --- */
+.mkt-pricing-wrap {
+  overflow-x: auto;
+}
+.mkt-pricing {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 760px;
+}
+.mkt-pricing th,
+.mkt-pricing td {
+  padding: 1rem 1.1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+.mkt-pricing thead th {
+  border-bottom: 2px solid var(--line);
+  vertical-align: bottom;
+}
+.mkt-pricing tbody th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.mkt-plan__name {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+.mkt-plan__price {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-top: 0.2rem;
+}
+.mkt-plan__per {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.mkt-pricing col.is-popular,
+.mkt-pricing th.is-popular,
+.mkt-pricing td.is-popular {
+  background: linear-gradient(180deg, #eff6ff, #f8fafc);
+}
+.mkt-pricing th.is-popular {
+  border-top: 3px solid var(--accent);
+  border-radius: 14px 14px 0 0;
+}
+.mkt-pill-popular {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  padding: 2px 9px;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+.mkt-pricing td .yes {
+  color: var(--accent);
+  font-weight: 700;
+}
+.mkt-pricing .cta-row td {
+  padding-top: 1.4rem;
+  border-bottom: 0;
+}
+
+/* --- Footer --- */
+.mkt-footer {
+  background: var(--ink);
+  color: var(--on-dark-muted);
+  padding: 64px 0 32px;
+}
+.mkt-footer__grid {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, 1fr);
+  gap: 2rem;
+}
+.mkt-footer h4 {
+  color: #fff;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 1rem;
+}
+.mkt-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.mkt-footer a {
+  color: var(--on-dark-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.mkt-footer a:hover {
+  color: #fff;
+}
+.mkt-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+.mkt-footer__tagline {
+  font-size: 0.9rem;
+  max-width: 30ch;
+}
+.mkt-footer__bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+}
+
+/* --- Reveal-animaatio --- */
+.mkt-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.mkt-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Responsiivisuus --- */
+@media (max-width: 940px) {
+  .mkt-cards--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mkt-calc__panel {
+    grid-template-columns: 1fr;
+  }
+  .mkt-footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 620px) {
+  .mkt-header__nav {
+    display: none;
+  }
+  .mkt-stats__grid {
+    grid-template-columns: 1fr;
+  }
+  .mkt-cards--4,
+  .mkt-cards--3,
+  .mkt-cards--2,
+  .mkt-steps {
+    grid-template-columns: 1fr;
+  }
+  .mkt-footer__grid {
+    grid-template-columns: 1fr;
+  }
+  .mkt-section {
+    padding: 60px 0;
+  }
+  .mkt-hero__body {
+    padding: 64px 0 76px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mkt-orb {
+    animation: none;
+  }
+  .mkt-reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  .mkt-btn,
+  .mkt-card,
+  .mkt-btn--primary:hover,
+  .mkt-card:hover {
+    transition: none;
+    transform: none;
+  }
+}
