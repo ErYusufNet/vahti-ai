@@ -1,0 +1,569 @@
+/* ===========================================================================
+   Vahti AI · hallintapaneelin tyylit (Nordic-minimalismi)
+   Ladataan vain dashboard-layoutissa.
+   =========================================================================== */
+
+.dash {
+  display: grid;
+  grid-template-columns: 232px 1fr;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* --- Sivupalkki --- */
+.dash-sidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 1.1rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.dash-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  font-size: 1.05rem;
+  padding: 0.4rem 0.6rem 0.9rem;
+}
+
+.dash-sidebar__badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 1px 4px;
+}
+
+.dash-sidebar__section {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+  padding: 0.8rem 0.7rem 0.3rem;
+}
+
+.dash-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 7px;
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: background 0.12s;
+}
+
+.dash-nav-link:hover {
+  background: var(--bg);
+}
+
+.dash-nav-link[aria-current="page"] {
+  background: #e8f3f9;
+  color: #1c6b8f;
+  font-weight: 600;
+}
+
+.dash-nav-link svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+.dash-sidebar__foot {
+  margin-top: auto;
+  padding: 0.6rem 0.7rem 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* --- Yläpalkki --- */
+.dash-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.dash-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.dash-topbar__clinic {
+  font-weight: 600;
+}
+
+.dash-topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dash-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.dash-content {
+  padding: 1.6rem;
+  max-width: 1180px;
+  width: 100%;
+}
+
+.dash-page-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.15rem;
+}
+
+.dash-page-sub {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.4rem;
+}
+
+/* --- Kortit / ruudukot --- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+.kpi {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+}
+
+.kpi__label {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.kpi__value {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-top: 0.2rem;
+}
+
+.kpi__sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .dash {
+    grid-template-columns: 1fr;
+  }
+  .dash-sidebar {
+    position: static;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-x: auto;
+  }
+  .dash-sidebar__foot {
+    display: none;
+  }
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+/* --- Aktiviteettivirta --- */
+.activity-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.86rem;
+}
+.activity-item:last-child {
+  border-bottom: 0;
+}
+.activity-item__meta {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+/* --- Taulukot --- */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.87rem;
+}
+.tbl th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 0.55rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.tbl td {
+  padding: 0.6rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.tbl tr:hover td {
+  background: var(--bg);
+}
+.tbl tr[data-selected="true"] td {
+  background: #e8f3f9;
+}
+
+/* --- Merkit / pillerit --- */
+.pill {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+}
+.pill--ok { background: #e6f5ec; color: #1a7a44; border-color: #bfe6cd; }
+.pill--warn { background: #fdf0e3; color: #9a5b12; border-color: #f2d4ac; }
+.pill--muted { background: var(--bg); }
+.pill--accent { background: #e8f3f9; color: #1c6b8f; border-color: #bfe0ee; }
+
+.score {
+  font-weight: 700;
+}
+.score--hi { color: #1a7a44; }
+.score--mid { color: #9a5b12; }
+.score--lo { color: var(--muted); }
+
+/* --- Saapuneet --- */
+.inbox-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .inbox-layout {
+    grid-template-columns: 1fr;
+  }
+}
+.conv-list {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.conv-filters {
+  display: flex;
+  gap: 4px;
+  padding: 0.6rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.conv-filter {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+.conv-filter[aria-pressed="true"] {
+  background: #e8f3f9;
+  color: #1c6b8f;
+  border-color: #bfe0ee;
+  font-weight: 600;
+}
+.conv-row {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.7rem 0.8rem;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: none;
+  cursor: pointer;
+}
+.conv-row:hover {
+  background: var(--bg);
+}
+.conv-row[aria-current="true"] {
+  background: #e8f3f9;
+}
+.conv-row__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.conv-row__name {
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+.conv-row__time {
+  font-size: 0.72rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.conv-row__preview {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.conv-row__tags {
+  display: flex;
+  gap: 4px;
+  margin-top: 5px;
+}
+.unread-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+}
+
+.conv-detail {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 1rem;
+  min-height: 320px;
+}
+.msg {
+  max-width: 75%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  margin-bottom: 0.6rem;
+  font-size: 0.87rem;
+  line-height: 1.4;
+}
+.msg--potilas {
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+.msg--tekoäly {
+  background: #e8f3f9;
+  border: 1px solid #bfe0ee;
+  margin-left: auto;
+}
+.msg--hoitaja {
+  background: #eef7ee;
+  border: 1px solid #cfe8cf;
+  margin-left: auto;
+}
+.msg__meta {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+/* --- Pipeline / kanban --- */
+.kanban {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 1fr);
+  gap: 0.9rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+.kanban-col {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.7rem;
+  min-height: 120px;
+}
+.kanban-col__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 0.6rem;
+}
+.kanban-col__count {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.kanban-col--over {
+  outline: 2px dashed var(--accent);
+  outline-offset: -2px;
+}
+.kanban-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 0.7rem;
+  margin-bottom: 0.5rem;
+  cursor: grab;
+}
+.kanban-card:active {
+  cursor: grabbing;
+}
+.kanban-card__name {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.kanban-card__svc {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 2px 0 5px;
+}
+.kanban-card__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- AI-avustaja / test chat --- */
+.ai-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1rem;
+  align-items: start;
+}
+@media (max-width: 1000px) {
+  .ai-layout {
+    grid-template-columns: 1fr;
+  }
+}
+.chat-box {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  height: 520px;
+}
+.chat-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.9rem;
+}
+.chat-input {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.7rem;
+  border-top: 1px solid var(--border);
+}
+.chat-input input {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem 0.7rem;
+  font: inherit;
+}
+.btn {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.btn--ghost {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+.notice {
+  font-size: 0.78rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+}
+.notice--accent {
+  background: #e8f3f9;
+  color: #1c6b8f;
+  border-color: #bfe0ee;
+}
+
+.todo-box {
+  border: 1px dashed var(--accent);
+  background: #f0f7fb;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  font-size: 0.84rem;
+  margin-bottom: 1.2rem;
+}
+.todo-box strong {
+  color: #1c6b8f;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem 1.1rem;
+}
+.field label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.field input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 0.45rem 0.6rem;
+  font: inherit;
+  background: var(--bg);
+}
