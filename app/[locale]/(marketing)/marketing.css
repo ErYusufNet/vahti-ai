@@ -964,3 +964,163 @@
   margin-top: 0.4rem;
   color: var(--on-dark-muted);
 }
+
+/* ===========================================================================
+   GÖREV A — /modules
+   =========================================================================== */
+.mkt-ba {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.mkt-ba__stage {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 24px 50px -24px rgba(15, 23, 42, 0.28);
+  user-select: none;
+}
+.mkt-ba__pane {
+  position: absolute;
+  inset: 0;
+}
+.mkt-ba__pane--before {
+  z-index: 2;
+}
+.mkt-ba__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.mkt-ba__tag {
+  position: absolute;
+  top: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #fff;
+}
+.mkt-ba__tag--before {
+  left: 12px;
+  background: rgba(15, 23, 42, 0.7);
+}
+.mkt-ba__tag--after {
+  right: 12px;
+  background: var(--accent);
+}
+.mkt-ba__divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #fff;
+  transform: translateX(-1px);
+  z-index: 3;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.15);
+}
+.mkt-ba__handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 0.9rem;
+  color: var(--accent);
+  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.4);
+}
+.mkt-ba__range {
+  width: 100%;
+  margin-top: 0.9rem;
+  accent-color: var(--accent);
+}
+.mkt-ba__note {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.mkt-mod {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+}
+.mkt-mod--popular {
+  border-color: var(--accent);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 22px 44px -18px rgba(59, 130, 246, 0.35);
+}
+.mkt-mod .mkt-pill-popular {
+  position: absolute;
+  top: -12px;
+  left: 1.7rem;
+}
+.mkt-mod__tagline {
+  color: var(--accent) !important;
+  font-weight: 600;
+  font-size: 0.85rem !important;
+  margin-top: 0 !important;
+}
+.mkt-mod__price {
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin: 0.3rem 0;
+}
+.mkt-mod__list {
+  list-style: none;
+  padding: 0;
+  margin: 0.6rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.mkt-mod__list li {
+  padding-left: 1.3rem;
+  position: relative;
+}
+.mkt-mod__list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+.mkt-mod__actions {
+  margin-top: auto;
+  padding-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.mkt-mod__how {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+}
+.mkt-mod__how:hover {
+  color: var(--accent);
+}
+
+.mkt-header__login {
+  color: var(--on-dark-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.mkt-header__login:hover {
+  color: #fff;
+}

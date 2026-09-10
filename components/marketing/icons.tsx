@@ -87,3 +87,24 @@ export const IconArchive = (p: SVGProps<SVGSVGElement>) => (
     <path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8M10 12h4" />
   </svg>
 );
+
+export const IconSpark2 = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...b} {...p}>
+    <path d="M12 3v4M12 17v4M3 12h4M17 12h4" />
+    <path d="M12 8l1.6 2.4L16 12l-2.4 1.6L12 16l-1.6-2.4L8 12l2.4-1.6z" />
+  </svg>
+);
+
+export const IconMegaphone = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...b} {...p}>
+    <path d="M3 11v2a1 1 0 0 0 1 1h3l7 4V6L7 10H4a1 1 0 0 0-1 1z" />
+    <path d="M17 8a4 4 0 0 1 0 8" />
+  </svg>
+);
+
+export const IconLayers = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...b} {...p}>
+    <path d="M12 3l9 5-9 5-9-5 9-5z" />
+    <path d="M3 13l9 5 9-5M3 17l9 5 9-5" />
+  </svg>
+);

@@ -23,10 +23,13 @@ export async function Footer() {
                 <Link href="/">{t("linkFeatures")}</Link>
               </li>
               <li>
+                <Link href="/modules">{t("linkModules")}</Link>
+              </li>
+              <li>
                 <Link href="/pricing">{t("linkPricing")}</Link>
               </li>
               <li>
-                <Link href="/for-clinics">Vahti AI + klinikat</Link>
+                <Link href="/demo">{t("linkDemo")}</Link>
               </li>
               <li>
                 <Link href="/dashboard">{t("linkDashboard")}</Link>
@@ -37,10 +40,13 @@ export async function Footer() {
             <h4>{t("colCompany")}</h4>
             <ul>
               <li>
-                <a href="#">{t("linkAbout")}</a>
+                <Link href="/about">{t("linkAbout")}</Link>
               </li>
               <li>
-                <a href="#contact">{t("linkContact")}</a>
+                <Link href="/partners">{t("linkPartners")}</Link>
+              </li>
+              <li>
+                <Link href="/contact">{t("linkContact")}</Link>
               </li>
               <li>
                 <a href="#">{t("linkCareers")}</a>
@@ -51,13 +57,13 @@ export async function Footer() {
             <h4>{t("colLegal")}</h4>
             <ul>
               <li>
-                <a href="#">{t("linkPrivacy")}</a>
+                <Link href="/privacy">{t("linkPrivacy")}</Link>
               </li>
               <li>
-                <a href="#">{t("linkTerms")}</a>
+                <Link href="/terms">{t("linkTerms")}</Link>
               </li>
               <li>
-                <a href="#">{t("linkGdpr")}</a>
+                <Link href="/privacy">{t("linkGdpr")}</Link>
               </li>
             </ul>
           </div>

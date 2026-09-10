@@ -27,12 +27,17 @@ export function MarketingHeader() {
 
         <nav className="mkt-header__nav">
           <Link href="/for-clinics">{t("forClinics")}</Link>
+          <Link href="/modules">{t("modules")}</Link>
           <Link href="/pricing">{t("pricing")}</Link>
-          <Link href="/login">{t("login")}</Link>
+          <Link href="/partners">{t("partners")}</Link>
+          <Link href="/demo">{t("demo")}</Link>
         </nav>
 
         <div className="mkt-header__right">
           <LocaleSwitcher />
+          <Link href="/login" className="mkt-header__login">
+            {t("login")}
+          </Link>
           <Link href="/signup" className="mkt-btn mkt-btn--primary mkt-btn--sm">
             {t("signup")}
           </Link>
