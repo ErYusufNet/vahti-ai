@@ -23,9 +23,11 @@ export type PipelineStage = (typeof PIPELINE_STAGES)[number];
 // --- Klinikka (aktiivinen tenant) ------------------------------------------
 export const clinic = {
   id: "clinic_demo",
+  slug: "aurora",
   ad: "Hammasklinikka Aurora",
   email: "info@aurorahammas.fi",
   telefon: "+358 9 123 4567",
+  varayhteysNumero: "+358 9 123 4599",
   sehir: "Helsinki",
   ulke: "Suomi",
   sektor: "Hammaslääkäri",

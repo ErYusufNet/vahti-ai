@@ -10,11 +10,13 @@ import {
   IconRobot,
   IconFlow,
   IconSettings,
+  IconInboxDown,
 } from "./icons";
 
 const ITEMS = [
   { href: "/dashboard/overview", key: "overview", Icon: IconOverview },
   { href: "/dashboard/inbox", key: "inbox", Icon: IconInbox },
+  { href: "/dashboard/callbacks", key: "callbacks", Icon: IconInboxDown },
   { href: "/dashboard/calls", key: "calls", Icon: IconPhone },
   { href: "/dashboard/pipeline", key: "pipeline", Icon: IconLeads },
   { href: "/dashboard/ai-assistant", key: "aiAssistant", Icon: IconRobot },

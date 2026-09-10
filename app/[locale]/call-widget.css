@@ -1,0 +1,339 @@
+/* ===========================================================================
+   GÖREV A — selaimen puhelu-widget (kelluva + koko sivun /call-tila)
+   Brändinmukainen: koyu ylätunniste + açık runko, yumuşak gölgeler.
+   =========================================================================== */
+.cw {
+  --cw-ink: #0f172a;
+  --cw-accent: #3b82f6;
+  --cw-accent-2: #38bdf8;
+  --cw-line: #e2e8f0;
+  --cw-muted: #64748b;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Kelluva nappi */
+.cw-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.8rem 1.25rem;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(180deg, #4f93f7, #2563eb);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 12px 28px -8px rgba(37, 99, 235, 0.6),
+    0 4px 10px -2px rgba(15, 23, 42, 0.3);
+  transition: transform 0.15s ease;
+}
+.cw-fab:hover {
+  transform: translateY(-2px);
+}
+
+/* Paneeli */
+.cw-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  width: min(380px, calc(100vw - 40px));
+  max-height: min(620px, calc(100vh - 40px));
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--cw-line);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 30px 60px -20px rgba(15, 23, 42, 0.45);
+}
+.cw--full {
+  display: block;
+}
+.cw-panel--full {
+  position: static;
+  width: min(440px, calc(100vw - 32px));
+  max-height: none;
+  margin: 0 auto;
+}
+
+/* Ylätunniste (tumma) */
+.cw-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  background: linear-gradient(120deg, #0f172a, #1d3a5f);
+  color: #fff;
+}
+.cw-head__id {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+}
+.cw-head__sub {
+  font-size: 0.74rem;
+  color: #94a3b8;
+  font-variant-numeric: tabular-nums;
+}
+.cw-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #64748b;
+  flex-shrink: 0;
+}
+.cw-dot.is-live {
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+  animation: cw-ping 1.8s infinite;
+}
+@keyframes cw-ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+.cw-x {
+  border: 0;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+/* Yhdistäminen */
+.cw-connecting {
+  padding: 2.4rem 1.4rem;
+  text-align: center;
+  color: var(--cw-muted);
+  font-size: 0.9rem;
+}
+.cw-pulse {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--cw-accent-2), var(--cw-accent));
+  animation: cw-pulse 1.4s ease-in-out infinite;
+}
+@keyframes cw-pulse {
+  0%,
+  100% {
+    transform: scale(0.85);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* AI-ilmoitus (Görev D) */
+.cw-disclosure {
+  padding: 0.5rem 0.9rem;
+  font-size: 0.76rem;
+  color: #1e40af;
+  background: #eff6ff;
+  border-bottom: 1px solid #dbeafe;
+}
+
+/* Chat-loki */
+.cw-log {
+  flex: 1;
+  min-height: 180px;
+  overflow-y: auto;
+  padding: 0.9rem;
+  background: #f8fafc;
+}
+.cw-hint {
+  color: var(--cw-muted);
+  font-size: 0.84rem;
+}
+.cw-bubble {
+  max-width: 82%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  margin-bottom: 0.55rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+.cw-bubble--me {
+  background: #fff;
+  border: 1px solid var(--cw-line);
+  border-bottom-right-radius: 4px;
+  margin-left: auto;
+}
+.cw-bubble--ai {
+  background: linear-gradient(180deg, #e0f2fe, #d6ecfb);
+  border: 1px solid #bfe0ee;
+  color: #0b3a54;
+  border-bottom-left-radius: 4px;
+}
+
+/* Syöte */
+.cw-input {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.7rem;
+  border-top: 1px solid var(--cw-line);
+  background: #fff;
+}
+.cw-input input {
+  flex: 1;
+  border: 1px solid var(--cw-line);
+  border-radius: 9px;
+  padding: 0.5rem 0.7rem;
+  font: inherit;
+  font-size: 0.88rem;
+}
+.cw-send {
+  border: 0;
+  border-radius: 9px;
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(180deg, #4f93f7, #2563eb);
+}
+.cw-send:disabled {
+  opacity: 0.6;
+}
+
+/* Toiminnot */
+.cw-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.6rem 0.7rem 0.8rem;
+  background: #fff;
+}
+.cw-human {
+  flex: 1;
+  border: 1px solid var(--cw-line);
+  background: #fff;
+  border-radius: 9px;
+  padding: 0.5rem;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--cw-ink);
+  cursor: pointer;
+}
+.cw-human:hover {
+  border-color: var(--cw-accent);
+  color: var(--cw-accent);
+}
+.cw-end {
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #b91c1c;
+  border-radius: 9px;
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Fallback */
+.cw-fallback {
+  padding: 1rem;
+  overflow-y: auto;
+  background: #fff;
+}
+.cw-fallback__lead {
+  font-size: 0.88rem;
+  color: var(--cw-ink);
+  margin-bottom: 0.9rem;
+}
+.cw-backup {
+  background: #f0f7fb;
+  border: 1px solid #bfe0ee;
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.9rem;
+}
+.cw-backup a {
+  font-weight: 700;
+  color: var(--cw-accent);
+}
+.cw-backup__todo {
+  margin-top: 0.35rem;
+  font-size: 0.74rem;
+  color: var(--cw-muted);
+}
+.cw-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.cw-form input,
+.cw-form textarea {
+  border: 1px solid var(--cw-line);
+  border-radius: 9px;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  font-size: 0.86rem;
+  background: #f8fafc;
+  resize: vertical;
+}
+.cw-err {
+  font-size: 0.8rem;
+  color: #b91c1c;
+}
+
+/* Kiitos */
+.cw-sent {
+  padding: 2rem 1.4rem;
+  text-align: center;
+  background: #fff;
+}
+.cw-check {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 0.9rem;
+  border-radius: 50%;
+  background: #ecfdf5;
+  color: #047857;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+.cw-sent p {
+  font-size: 0.9rem;
+  color: var(--cw-ink);
+}
+.cw-sent__who {
+  color: var(--cw-muted) !important;
+  font-size: 0.82rem !important;
+  margin-top: 0.4rem;
+}
+.cw-sent .cw-human {
+  margin-top: 1rem;
+  max-width: 160px;
+  margin-inline: auto;
+}

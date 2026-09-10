@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { CallWidget } from "@/components/widget/CallWidget";
 import "../globals.css";
+import "./call-widget.css";
 
 type Props = {
   children: ReactNode;
@@ -33,7 +35,11 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          {children}
+          {/* GÖREV A — kelluva puhelu-widget (piilotettu dashboardissa/call-sivulla) */}
+          <CallWidget />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

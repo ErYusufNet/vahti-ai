@@ -15,23 +15,47 @@ datasource db {
 
 /// Klinikka (tenant).
 model Klinik {
-  id         String   @id @default(cuid())
-  ad         String
-  email      String   @unique
-  telefon    String?
-  sehir      String?
-  ulke       String   @default("FI")
-  sektor     String?
-  aiDili     String   @default("fi")
-  saatDilimi String   @default("Europe/Helsinki")
-  plan       String   @default("essential") // essential | professional | business | enterprise
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id               String   @id @default(cuid())
+  slug             String?  @unique // jaettava puhelulinkki: /call/<slug>  (GÖREV B)
+  ad               String
+  email            String   @unique
+  telefon          String?
+  varayhteysNumero String? // PSTN-varayhteys (GÖREV C)
+  sehir            String?
+  ulke             String   @default("FI")
+  sektor           String?
+  aiDili           String   @default("fi")
+  saatDilimi       String   @default("Europe/Helsinki")
+  plan             String   @default("essential")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 
-  kullanicilar Kullanici[]
-  leadler      Lead[]
-  tietopankki  KnowledgeEntry[]
-  ajanvaraukset Appointment[]
+  kullanicilar     Kullanici[]
+  leadler          Lead[]
+  tietopankki      KnowledgeEntry[]
+  ajanvaraukset    Appointment[]
+  callbackPyynnot  CallbackRequest[]
+}
+
+/// GÖREV A — selaimen puhelu-widgetistä jätetty yhteydenottopyyntö.
+model CallbackRequest {
+  id             String   @id @default(cuid())
+  klinikId       String
+  nimi           String
+  email          String?
+  puhelin        String?
+  aihe           String? // aihe/otsikko
+  viesti         String
+  tapa           String   @default("teksti") // teksti | aani
+  lahde          String   @default("widget") // widget | call-link
+  tila           String   @default("uusi") // uusi | kasitelty
+  assignedToId   String? // GÖREV E — round-robin -vastuuhenkilö
+  assignedToNimi String? // denormalisoitu nimi näyttöä varten
+  createdAt      DateTime @default(now())
+
+  klinik Klinik @relation(fields: [klinikId], references: [id], onDelete: Cascade)
+
+  @@index([klinikId, createdAt])
 }
 
 /// Klinikan käyttäjä (tiimin jäsen) + kirjautumistiedot (GÖREV C).
