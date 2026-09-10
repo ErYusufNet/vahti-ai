@@ -1,45 +1,52 @@
 /**
- * Görev 9 — Ääni-/puhelukanava RUNKO (monimutkaisin, tehdään viimeisenä).
+ * Görev 9 — puhelun orkestrointi (ei-striimaava):
+ *   nauhoitus → Deepgram STT → Claude-agentti → ElevenLabs TTS → Twilio <Play>
  *
- * Kokonaisputki:  Twilio (SIP/puhelu)  →  Deepgram (STT, suomi)  →
- *                 Claude (agentti)     →  TTS (ElevenLabs/Azure)  →  Twilio
- * Toteutetaan striimaavana (matala viive).
- *
- * TODO — tarvittavat tilit ja avaimet (.env):
- *   TWILIO_ACCOUNT_SID=AC...          Twilio-numero + Media Streams
- *   TWILIO_AUTH_TOKEN=...             https://console.twilio.com
- *   TWILIO_PHONE_NUMBER=+358...
- *   DEEPGRAM_API_KEY=...              suomen STT — https://console.deepgram.com
- *                                    (varmista Fince-mallin laatu ensin!)
- *   ELEVENLABS_API_KEY=...            TTS — https://elevenlabs.io
- *   (tai AZURE_SPEECH_KEY + AZURE_SPEECH_REGION)
- *
- * Tila nyt: pelkät tyyppimäärittelyt ja funktioiden kuoret. Puhelunäkymä
- * (/dashboard/calls) toimii mock-datalla, mutta oikeaa puhelua ei käsitellä.
+ * Striimauksen (matala viive) voi lisätä myöhemmin Twilio Media Streams +
+ * Deepgram live -yhteydellä; tämä on toimeksiannon mukainen "aloita
+ * yksinkertaisesta" -versio.
  */
-import { runAgent } from "@/lib/agent/claude";
+import { runAgent, type ChatMsg } from "@/lib/agent/claude";
+import { appendConversationTurn } from "@/lib/conversations";
+import { appendSession, getSession } from "./store";
+import { integrationStatus } from "@/lib/env";
 
-export type VoiceTurn = { role: "caller" | "agent"; text: string };
-
-export function isVoiceConfigured(): boolean {
-  return !!process.env.TWILIO_ACCOUNT_SID && !!process.env.DEEPGRAM_API_KEY;
-}
-
-/** TODO: Deepgram-striimaus (WebSocket) → tekstipätkät. */
-export async function transcribeStream(): Promise<never> {
-  throw new Error("transcribeStream(): Deepgram-STT ei ole kytketty (Görev 9).");
-}
-
-/** TODO: TTS-striimaus → ääni takaisin Twilioon. */
-export async function synthesizeSpeech(_text: string): Promise<never> {
-  throw new Error("synthesizeSpeech(): TTS ei ole kytketty (Görev 9).");
+export function voiceIntegrationSummary() {
+  const s = integrationStatus();
+  return {
+    twilio: s.twilio,
+    deepgram: s.deepgram,
+    elevenlabs: s.elevenlabs,
+    anthropic: s.anthropic,
+  };
 }
 
 /**
- * Ainoa osa, joka toimii jo: litteroitu teksti → agentin vastausteksti.
- * (STT ja TTS puuttuvat edelleen.)
+ * Yksi puhelun vuoro: litteroitu teksti → agentin vastausteksti.
+ * Säilyttää keskusteluhistorian CallSid:n mukaan.
  */
-export async function handleTranscribedUtterance(text: string): Promise<string> {
-  const result = await runAgent([{ role: "user", content: text }]);
-  return result.reply;
+export async function handleVoiceTurn(
+  callSid: string,
+  transcript: string,
+  fromNumber: string,
+): Promise<{ reply: string; language: "fi" | "en"; mode: string }> {
+  appendSession(callSid, "user", transcript);
+  const history: ChatMsg[] = getSession(callSid).messages.map((m) => ({
+    role: m.role,
+    content: m.content,
+  }));
+
+  const result = await runAgent(history);
+  appendSession(callSid, "assistant", result.reply);
+
+  // Talteen tietokantaan (no-op ilman DB:tä)
+  await appendConversationTurn({
+    channel: "voice",
+    contact: fromNumber,
+    lang: result.language,
+    userText: transcript,
+    aiText: result.reply,
+  });
+
+  return { reply: result.reply, language: result.language, mode: result.mode };
 }

@@ -1,13 +1,16 @@
-// Vahti AI · Tehtävän 1 tietomalli.
+// Vahti AI · tietomalli.
 // Kentät on nimetty toimeksiannon mukaisesti (turkinkieliset tunnisteet).
+// Görev 7: pgvector-laajennus + embedding-sarake (RAG).
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
 }
 
 /// Klinikka (tenant).
@@ -26,6 +29,8 @@ model Klinik {
 
   kullanicilar Kullanici[]
   leadler      Lead[]
+  tietopankki  KnowledgeEntry[]
+  ajanvaraukset Appointment[]
 }
 
 /// Klinikan käyttäjä (tiimin jäsen).
@@ -43,18 +48,23 @@ model Kullanici {
 
 /// Liidi (mahdollinen potilas).
 model Lead {
-  id              String   @id @default(cuid())
+  id              String    @id @default(cuid())
   klinikId        String
   isim            String?
-  dil             String   @default("fi")
-  kaynakKanal     String   @default("web_chat")
-  leadSkoru       Int      @default(0)
-  pipelineAsamasi String   @default("yeni")
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  dil             String    @default("fi")
+  kaynakKanal     String    @default("web_chat")
+  leadSkoru       Int       @default(0)
+  pipelineAsamasi String    @default("uusi")
+  // Yhteystiedot automaatioita varten (Görev 8):
+  puhelin         String?
+  email           String?
+  sonYhteysAika   DateTime? // viimeisin kontakti
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
-  klinik     Klinik    @relation(fields: [klinikId], references: [id], onDelete: Cascade)
-  konusmalar Konusma[]
+  klinik       Klinik        @relation(fields: [klinikId], references: [id], onDelete: Cascade)
+  konusmalar   Konusma[]
+  ajanvaraukset Appointment[]
 
   @@index([klinikId])
   @@index([klinikId, pipelineAsamasi])
@@ -67,8 +77,63 @@ model Konusma {
   kanal     String
   mesajlar  Json     @default("[]")
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
 
   lead Lead @relation(fields: [leadId], references: [id], onDelete: Cascade)
 
   @@index([leadId])
+}
+
+/// Görev 7 — tietopankin tietue + embedding (pgvector).
+/// `embedding` on Unsupported-tyyppi: sitä käsitellään raakakyselyillä
+/// ($queryRaw / $executeRaw), ei Prisma Clientin kautta.
+model KnowledgeEntry {
+  id        String   @id @default(cuid())
+  klinikId  String
+  palvelu   String
+  kategoria String
+  hinta     String   @default("")
+  kesto     String   @default("")
+  tiedot    String
+  embedding Unsupported("vector(1536)")?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  klinik Klinik @relation(fields: [klinikId], references: [id], onDelete: Cascade)
+
+  @@index([klinikId])
+}
+
+/// Görev 6 — paikallinen kopio Google Calendar -varauksesta.
+model Appointment {
+  id              String   @id @default(cuid())
+  klinikId        String
+  leadId          String?
+  potilaanNimi    String
+  palvelu         String
+  alkaa           DateTime
+  yhteystieto     String?
+  calendarEventId String? // Google Calendar -tapahtuman id (jos luotu)
+  lahde           String   @default("agent") // agent | manual | voice | whatsapp
+  muistutettu     Boolean  @default(false)
+  createdAt       DateTime @default(now())
+
+  klinik Klinik @relation(fields: [klinikId], references: [id], onDelete: Cascade)
+  lead   Lead?  @relation(fields: [leadId], references: [id], onDelete: SetNull)
+
+  @@index([klinikId])
+  @@index([alkaa])
+}
+
+/// Görev 8 — automaatioajojen loki.
+model WorkflowRun {
+  id         String   @id @default(cuid())
+  workflowId String
+  executedAt DateTime @default(now())
+  dryRun     Boolean  @default(false)
+  matched    Int      @default(0)
+  sent       Int      @default(0)
+  detail     Json     @default("{}")
+
+  @@index([workflowId, executedAt])
 }

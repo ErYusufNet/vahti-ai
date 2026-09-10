@@ -1,5 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { clinic, users } from "@/lib/mock/data";
+import { integrationStatus } from "@/lib/env";
+import { isDbAvailable } from "@/lib/db";
 
 /** Asetukset — klinikan tiedot ja tiimi (mock, lukutila). */
 export default async function SettingsPage() {
@@ -15,6 +17,18 @@ export default async function SettingsPage() {
     { label: t("fieldAiLanguage"), value: clinic.aiDili },
     { label: t("fieldTimezone"), value: clinic.saatDilimi },
     { label: t("fieldPlan"), value: clinic.plan },
+  ];
+
+  const st = integrationStatus();
+  const integrations: { name: string; live: boolean; task: string }[] = [
+    { name: "PostgreSQL / Prisma", live: await isDbAvailable(), task: "1,5,7,8,9" },
+    { name: "Claude (Anthropic)", live: st.anthropic, task: "2" },
+    { name: "WhatsApp Cloud API", live: st.whatsapp, task: "5" },
+    { name: "Google Calendar", live: st.googleCalendar, task: "6" },
+    { name: "Embeddings (RAG)", live: st.embeddings, task: "7" },
+    { name: "Twilio (puhelut)", live: st.twilio, task: "9" },
+    { name: "Deepgram (STT)", live: st.deepgram, task: "9" },
+    { name: "ElevenLabs (TTS)", live: st.elevenlabs, task: "9" },
   ];
 
   const roleLabel = (r: string) =>
@@ -43,6 +57,35 @@ export default async function SettingsPage() {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="card" style={{ padding: 0, overflow: "hidden", marginBottom: "1.2rem" }}>
+        <div style={{ padding: "1rem 1.1rem 0" }}>
+          <div className="section-title">{t("integrationsTitle")}</div>
+          <p className="dash-page-sub">{t("integrationsSub")}</p>
+        </div>
+        <table className="tbl">
+          <thead>
+            <tr>
+              <th>{t("colIntegration")}</th>
+              <th>{t("colTask")}</th>
+              <th>{t("colMode")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {integrations.map((i) => (
+              <tr key={i.name}>
+                <td>{i.name}</td>
+                <td style={{ color: "var(--muted)" }}>Görev {i.task}</td>
+                <td>
+                  <span className={`pill ${i.live ? "pill--ok" : "pill--warn"}`}>
+                    {i.live ? t("modeLive") : t("modeDemo")}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       <div className="card" style={{ padding: 0, overflow: "hidden" }}>

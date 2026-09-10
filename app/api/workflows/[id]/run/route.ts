@@ -1,18 +1,21 @@
 import { NextResponse } from "next/server";
-import { evaluateWorkflow, getWorkflow } from "@/lib/workflows/engine";
+import { runWorkflow } from "@/lib/workflows/runner";
+import { getWorkflowDef } from "@/lib/workflows/definitions";
 
 /**
  * Görev 8 — POST /api/workflows/:id/run
- * Ajaa työnkulun KUIVAHARJOITUKSENA: laskee kohdeliidit, ei lähetä viestejä.
+ * Body / query:  ?dryRun=true  → laskee osumat, ei lähetä.
+ *                (oletus)      → suorittaa oikeasti (lähettää jos avaimet + DB).
  */
 export async function POST(
-  _req: Request,
+  req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
-  const wf = getWorkflow(id);
-  if (!wf) {
+  if (!getWorkflowDef(id)) {
     return NextResponse.json({ error: "Työnkulkua ei löytynyt" }, { status: 404 });
   }
-  return NextResponse.json(evaluateWorkflow(wf));
+  const dryRun = new URL(req.url).searchParams.get("dryRun") === "true";
+  const result = await runWorkflow(id, { dryRun });
+  return NextResponse.json(result);
 }

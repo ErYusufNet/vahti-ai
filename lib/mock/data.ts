@@ -305,14 +305,23 @@ export type Workflow = {
   viimeinenAjo: string | null;
 };
 
+// id:t vastaavat lib/workflows/definitions.ts:ää niille 3:lle, jotka on
+// toteutettu oikeasti (Görev 8). Loput 3 ovat vielä suunnitelmia.
 export const workflows: Workflow[] = [
-  { id: "w1", nimi: "Ensikontaktisoitto", kuvaus: "Soittaa uudelle liidille automaattisesti 60 sekunnin sisällä yhteydenotosta.", liipaisin: "Uusi liidi luotu", tila: "aktiivinen", ajokerrat: 128, viimeinenAjo: "2026-09-10T05:02:40Z" },
-  { id: "w2", nimi: "Kuuma seuranta", kuvaus: "Lähettää seurantaviestin liidille, joka ei ole vastannut 4 tuntiin.", liipaisin: "Ei vastausta 4 h", tila: "aktiivinen", ajokerrat: 342, viimeinenAjo: "2026-09-10T03:15:00Z" },
-  { id: "w3", nimi: "Ajanvarausmuistutus", kuvaus: "Muistuttaa varatusta ajasta 24 h ja 2 h ennen käyntiä.", liipaisin: "24 h ennen aikaa", tila: "aktiivinen", ajokerrat: 891, viimeinenAjo: "2026-09-10T06:30:00Z" },
-  { id: "w4", nimi: "Peruuntuneen seuranta", kuvaus: "Ottaa yhteyttä, jos potilas ei saapunut varatulle ajalle (no-show).", liipaisin: "Aika ohitettu ilman saapumista", tila: "luonnos", ajokerrat: 0, viimeinenAjo: null },
-  { id: "w5", nimi: "Tyytyväisyyskysely", kuvaus: "Lähettää lyhyen palautekyselyn hoidon jälkeen.", liipaisin: "Käynti merkitty valmiiksi", tila: "aktiivinen", ajokerrat: 456, viimeinenAjo: "2026-09-09T16:00:00Z" },
-  { id: "w6", nimi: "Reaktivointi", kuvaus: "Ottaa yhteyttä liideihin, jotka ovat olleet hiljaa yli 60 päivää.", liipaisin: "60 pv ilman kontaktia", tila: "luonnos", ajokerrat: 12, viimeinenAjo: "2026-08-20T10:00:00Z" },
+  { id: "ensikontaktisoitto", nimi: "Ensikontaktisoitto", kuvaus: "Soittaa uudelle liidille automaattisesti 60 sekunnin sisällä yhteydenotosta.", liipaisin: "Uusi liidi luotu", tila: "luonnos", ajokerrat: 0, viimeinenAjo: null },
+  { id: "kuuma-seuranta", nimi: "Kuuma seuranta", kuvaus: "Lähettää seurantaviestin liidille (vaihe kuuma/arviointi), johon ei ole oltu yhteydessä 4 tuntiin.", liipaisin: "Ei kontaktia 4 h", tila: "aktiivinen", ajokerrat: 342, viimeinenAjo: "2026-09-10T03:15:00Z" },
+  { id: "ajanvaraus-muistutus", nimi: "Ajanvarausmuistutus", kuvaus: "Muistuttaa varatusta ajasta, kun käyntiin on alle 24 tuntia.", liipaisin: "Aika alkaa < 24 h", tila: "aktiivinen", ajokerrat: 891, viimeinenAjo: "2026-09-10T06:30:00Z" },
+  { id: "peruuntuneen-seuranta", nimi: "Peruuntuneen seuranta", kuvaus: "Ottaa yhteyttä, jos potilas ei saapunut varatulle ajalle (no-show).", liipaisin: "Aika ohitettu ilman saapumista", tila: "luonnos", ajokerrat: 0, viimeinenAjo: null },
+  { id: "tyytyvaisyyskysely", nimi: "Tyytyväisyyskysely", kuvaus: "Lähettää lyhyen palautekyselyn hoidon jälkeen.", liipaisin: "Käynti merkitty valmiiksi", tila: "luonnos", ajokerrat: 0, viimeinenAjo: null },
+  { id: "reaktivointi", nimi: "Reaktivointi", kuvaus: "Ottaa yhteyttä liideihin, joihin ei ole oltu yhteydessä yli 60 päivään.", liipaisin: "60 pv ilman kontaktia", tila: "luonnos", ajokerrat: 12, viimeinenAjo: "2026-08-20T10:00:00Z" },
 ];
+
+/** Näiden työnkulkujen "Aja"-nappi suorittaa oikean logiikan (lib/workflows/runner.ts). */
+export const IMPLEMENTED_WORKFLOWS = new Set([
+  "kuuma-seuranta",
+  "ajanvaraus-muistutus",
+  "reaktivointi",
+]);
 
 // --- Yleiskatsauksen tunnusluvut -------------------------------------
 export const overview = {
