@@ -1,0 +1,14 @@
+{
+  "Metadata": {
+    "title": "Vahti AI",
+    "description": "Tekoälyvastaanottovirkailija-alusta terveydenhuollon klinikoille Suomessa."
+  },
+  "Header": {
+    "tagline": "Tekoälyvastaanotto klinikoille"
+  },
+  "HomePage": {
+    "title": "Vahti AI",
+    "tagline": "Aina valmiina vastaamaan – luotettava tekoälyvastaanottovirkailija klinikallesi.",
+    "scaffoldNote": "Projektin runko (Tehtävä 1) on pystyssä. Näkymät ja toiminnot rakennetaan seuraavissa tehtävissä."
+  }
+}

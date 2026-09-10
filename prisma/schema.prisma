@@ -1,0 +1,74 @@
+// Vahti AI · Tehtävän 1 tietomalli.
+// Kentät on nimetty toimeksiannon mukaisesti (turkinkieliset tunnisteet).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Klinikka (tenant).
+model Klinik {
+  id         String   @id @default(cuid())
+  ad         String
+  email      String   @unique
+  telefon    String?
+  sehir      String?
+  ulke       String   @default("FI")
+  sektor     String?
+  aiDili     String   @default("fi")
+  saatDilimi String   @default("Europe/Helsinki")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  kullanicilar Kullanici[]
+  leadler      Lead[]
+}
+
+/// Klinikan käyttäjä (tiimin jäsen).
+model Kullanici {
+  id       String @id @default(cuid())
+  klinikId String
+  ad       String
+  email    String @unique
+  rol      String @default("uye")
+
+  klinik Klinik @relation(fields: [klinikId], references: [id], onDelete: Cascade)
+
+  @@index([klinikId])
+}
+
+/// Liidi (mahdollinen potilas).
+model Lead {
+  id              String   @id @default(cuid())
+  klinikId        String
+  isim            String?
+  dil             String   @default("fi")
+  kaynakKanal     String   @default("web_chat")
+  leadSkoru       Int      @default(0)
+  pipelineAsamasi String   @default("yeni")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  klinik     Klinik    @relation(fields: [klinikId], references: [id], onDelete: Cascade)
+  konusmalar Konusma[]
+
+  @@index([klinikId])
+  @@index([klinikId, pipelineAsamasi])
+}
+
+/// Keskustelu yhden kanavan kautta; viestit talletetaan JSON-listana.
+model Konusma {
+  id        String   @id @default(cuid())
+  leadId    String
+  kanal     String
+  mesajlar  Json     @default("[]")
+  createdAt DateTime @default(now())
+
+  lead Lead @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+}

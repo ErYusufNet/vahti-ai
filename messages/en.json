@@ -1,0 +1,14 @@
+{
+  "Metadata": {
+    "title": "Vahti AI",
+    "description": "AI receptionist platform for healthcare clinics in Finland."
+  },
+  "Header": {
+    "tagline": "AI reception for clinics"
+  },
+  "HomePage": {
+    "title": "Vahti AI",
+    "tagline": "Always ready to answer – a reliable AI receptionist for your clinic.",
+    "scaffoldNote": "The project skeleton (Task 1) is up. Views and features are built in the following tasks."
+  }
+}
