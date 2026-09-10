@@ -163,7 +163,9 @@
     "s2": "Do you have any slots this week?",
     "s3": "Puhutteko myös suomea?",
     "footnote": "This is the same agent that answers on your channels.",
-    "footnoteCta": "Set it up for your clinic →"
+    "footnoteCta": "Set it up for your clinic →",
+    "aiDisclosure": "You are talking to an AI. You can ask for a human at any time.",
+    "askHuman": "Ask for a human"
   },
   "Partners": {
     "eyebrow": "Partner program",
@@ -557,7 +559,8 @@
     "modeMock": "Mock mode — add ANTHROPIC_API_KEY for real Claude replies",
     "modeLive": "Connected to Claude (Sonnet 5)",
     "toolCalled": "Tool called",
-    "you": "You (patient)"
+    "you": "You (patient)",
+    "aiDisclosure": "You are talking to an AI. You can ask for a human at any time."
   },
   "Workflows": {
     "title": "Workflows",
@@ -602,6 +605,7 @@
     "colMember": "Member",
     "colEmail": "Email",
     "colRole": "Role",
+    "colCallbacks": "Callbacks",
     "roleOmistaja": "Owner",
     "roleVastaanotto": "Reception",
     "roleHoitaja": "Nurse",

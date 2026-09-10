@@ -10,6 +10,9 @@ export function DemoChat() {
 
   const suggestions = [t("s1"), t("s2"), t("s3")];
 
+  // GÖREV D — "Pyydä ihmistä" avaa puhelu-widgetin fallback-lomakkeen.
+  const askHuman = () => window.dispatchEvent(new CustomEvent("vahti:open-human"));
+
   return (
     <div className="mkt-demochat">
       <div
@@ -18,6 +21,14 @@ export function DemoChat() {
         {meta?.mode === "live"
           ? `${t("modeLive")}${meta.model ? ` · ${meta.model}` : ""}`
           : t("modeMock")}
+      </div>
+
+      {/* GÖREV D — tekoäly-ilmoitus (EU AI Act -läpinäkyvyys) */}
+      <div className="mkt-demochat__disclosure">
+        <span>{t("aiDisclosure")}</span>
+        <button type="button" onClick={askHuman}>
+          {t("askHuman")}
+        </button>
       </div>
 
       <div className="mkt-demochat__log" ref={logRef}>

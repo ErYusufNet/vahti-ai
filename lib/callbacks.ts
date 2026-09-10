@@ -131,6 +131,18 @@ export async function listCallbackRequests(): Promise<{
   return { rows: memList(), backend: "mock" };
 }
 
+/** GÖREV E — montako callback-pyyntöä on jaettu kullekin tiimin jäsenelle (nimi → lkm). */
+export async function assigneeCounts(): Promise<Record<string, number>> {
+  const { rows } = await listCallbackRequests();
+  const counts: Record<string, number> = {};
+  for (const r of rows) {
+    if (r.assignedToNimi) {
+      counts[r.assignedToNimi] = (counts[r.assignedToNimi] ?? 0) + 1;
+    }
+  }
+  return counts;
+}
+
 /** GÖREV C — PSTN-varayhteys: klinikan varanumero (DB tai mock). */
 export async function getBackupNumber(slug?: string): Promise<string | null> {
   if (await isDbAvailable()) {

@@ -1312,3 +1312,31 @@
   font-size: 0.82rem;
   color: var(--muted);
 }
+
+/* GÖREV D — demo-chatin tekoäly-ilmoitus */
+.mkt-demochat__disclosure {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.78rem;
+  color: #1e40af;
+  background: #eff6ff;
+  border-bottom: 1px solid #dbeafe;
+}
+.mkt-demochat__disclosure button {
+  flex-shrink: 0;
+  border: 1px solid #bfdbfe;
+  background: #fff;
+  color: #1e40af;
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.mkt-demochat__disclosure button:hover {
+  background: #dbeafe;
+}

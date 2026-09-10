@@ -24,6 +24,11 @@ export function TestChat() {
           : t("modeMock")}
       </div>
 
+      {/* GÖREV D — tekoäly-ilmoitus (EU AI Act -läpinäkyvyys) */}
+      <div className="notice" style={{ marginBottom: ".6rem", fontStyle: "italic" }}>
+        {t("aiDisclosure")}
+      </div>
+
       <div className="chat-box">
         <div className="chat-log" ref={logRef}>
           {turns.length === 0 && (

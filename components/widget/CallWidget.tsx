@@ -52,6 +52,14 @@ export function CallWidget({
     return () => clearTimeout(id);
   }, [state]);
 
+  // GÖREV D — muut chatit ("Pyydä ihmistä") avaavat widgetin fallback-lomakkeen.
+  useEffect(() => {
+    if (fullPage) return;
+    const open = () => setState("fallback");
+    window.addEventListener("vahti:open-human", open);
+    return () => window.removeEventListener("vahti:open-human", open);
+  }, [fullPage]);
+
   // Puhelun kesto
   useEffect(() => {
     if (state !== "chatting") return;

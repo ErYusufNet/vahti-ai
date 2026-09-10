@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { clinic, users } from "@/lib/mock/data";
 import { integrationStatus, env } from "@/lib/env";
 import { isDbAvailable } from "@/lib/db";
-import { getBackupNumber } from "@/lib/callbacks";
+import { getBackupNumber, assigneeCounts } from "@/lib/callbacks";
 import { ShareLinkCard } from "@/components/dashboard/ShareLinkCard";
 import { BackupNumberForm } from "@/components/dashboard/BackupNumberForm";
 
@@ -36,6 +36,7 @@ export default async function SettingsPage() {
 
   const backupNumber = await getBackupNumber();
   const dbUp = await isDbAvailable();
+  const cbCounts = await assigneeCounts();
 
   const roleLabel = (r: string) =>
     r === "omistaja"
@@ -123,6 +124,7 @@ export default async function SettingsPage() {
               <th>{t("colMember")}</th>
               <th>{t("colEmail")}</th>
               <th>{t("colRole")}</th>
+              <th>{t("colCallbacks")}</th>
             </tr>
           </thead>
           <tbody>
@@ -133,6 +135,7 @@ export default async function SettingsPage() {
                 <td>
                   <span className="pill">{roleLabel(u.rol)}</span>
                 </td>
+                <td>{cbCounts[u.ad] ?? 0}</td>
               </tr>
             ))}
           </tbody>

@@ -163,7 +163,9 @@
     "s2": "Onko teillä aikoja tällä viikolla?",
     "s3": "Do you also serve patients in English?",
     "footnote": "Tämä on sama agentti, joka vastaa kanavillasi.",
-    "footnoteCta": "Ota käyttöön omalle klinikalle →"
+    "footnoteCta": "Ota käyttöön omalle klinikalle →",
+    "aiDisclosure": "Olet keskustelemassa tekoälyn kanssa. Voit pyytää ihmistä milloin tahansa.",
+    "askHuman": "Pyydä ihmistä"
   },
   "Partners": {
     "eyebrow": "Kumppaniohjelma",
@@ -557,7 +559,8 @@
     "modeMock": "Mock-tila — lisää ANTHROPIC_API_KEY saadaksesi oikeat Claude-vastaukset",
     "modeLive": "Yhdistetty Claudeen (Sonnet 5)",
     "toolCalled": "Työkalu kutsuttu",
-    "you": "Sinä (potilas)"
+    "you": "Sinä (potilas)",
+    "aiDisclosure": "Olet keskustelemassa tekoälyn kanssa. Voit pyytää ihmistä milloin tahansa."
   },
   "Workflows": {
     "title": "Työnkulut",
@@ -602,6 +605,7 @@
     "colMember": "Jäsen",
     "colEmail": "Sähköposti",
     "colRole": "Rooli",
+    "colCallbacks": "Callback-pyynnöt",
     "roleOmistaja": "Omistaja",
     "roleVastaanotto": "Vastaanotto",
     "roleHoitaja": "Hoitaja",
