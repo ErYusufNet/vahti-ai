@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
 import { MarketingHeader } from "@/components/marketing/MarketingHeader";
+import { Footer } from "@/components/marketing/Footer";
 import "./marketing.css";
 
 const inter = Inter({
@@ -9,12 +10,13 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-/** Markkinointisivujen kehys (etusivu). Ei vaikuta URL-osoitteeseen. */
+/** Markkinointisivujen kehys: header + sisältö + footer. Ei vaikuta URL:iin. */
 export default function MarketingLayout({ children }: { children: ReactNode }) {
   return (
     <div className={`mkt ${inter.variable}`}>
       <MarketingHeader />
       {children}
+      <Footer />
     </div>
   );
 }

@@ -26,15 +26,15 @@ export function MarketingHeader() {
         </Link>
 
         <nav className="mkt-header__nav">
-          <a href="#features">{t("features")}</a>
-          <a href="#channels">{t("channels")}</a>
-          <a href="#pricing">{t("pricing")}</a>
+          <Link href="/for-clinics">{t("forClinics")}</Link>
+          <Link href="/pricing">{t("pricing")}</Link>
+          <Link href="/login">{t("login")}</Link>
         </nav>
 
         <div className="mkt-header__right">
           <LocaleSwitcher />
-          <Link href="/dashboard" className="mkt-btn mkt-btn--primary mkt-btn--sm">
-            {t("dashboard")}
+          <Link href="/signup" className="mkt-btn mkt-btn--primary mkt-btn--sm">
+            {t("signup")}
           </Link>
         </div>
       </div>

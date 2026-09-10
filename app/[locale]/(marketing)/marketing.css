@@ -593,6 +593,82 @@
   padding-top: 1.4rem;
   border-bottom: 0;
 }
+.mkt-pricing__vat {
+  margin-top: 0.9rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* --- Pakettikortit (/pricing) --- */
+.mkt-plan-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+.mkt-plan-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 12px 30px -16px rgba(15, 23, 42, 0.16);
+}
+.mkt-plan-card.is-popular {
+  border-color: var(--accent);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 22px 44px -18px rgba(59, 130, 246, 0.35);
+}
+.mkt-plan-card .mkt-pill-popular {
+  position: absolute;
+  top: -12px;
+  left: 1.6rem;
+}
+.mkt-plan-card__name {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+.mkt-plan-card__price {
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+.mkt-plan-card__desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  flex: 1;
+}
+.mkt-plan-card .mkt-btn {
+  justify-content: center;
+  margin-top: 0.6rem;
+}
+
+/* --- Lyhyt hero (sisäsivut) --- */
+.mkt-hero--short {
+  background:
+    radial-gradient(900px 380px at 75% -20%, rgba(37, 99, 235, 0.22), transparent 60%),
+    linear-gradient(180deg, #0b1220, #0f172a);
+}
+.mkt-hero__body--short {
+  padding: 92px 0 56px;
+  max-width: 640px;
+}
+
+@media (max-width: 940px) {
+  .mkt-plan-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 620px) {
+  .mkt-plan-cards {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* --- Footer --- */
 .mkt-footer {
