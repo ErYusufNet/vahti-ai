@@ -36,6 +36,9 @@
   margin: 0 auto;
   padding-inline: 24px;
 }
+.mkt-shell--narrow {
+  max-width: 780px;
+}
 
 .mkt h1,
 .mkt h2,
@@ -793,4 +796,171 @@
     transition: none;
     transform: none;
   }
+}
+
+/* ===========================================================================
+   GÖREV B — /for-clinics
+   =========================================================================== */
+
+/* Acı noktası kartları */
+.mkt-card--pain .mkt-card__icon--warn {
+  color: #b45309;
+  background: linear-gradient(180deg, #fef3e2, #fde4c8);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 6px 14px -6px rgba(180, 83, 9, 0.35);
+}
+
+/* AI konuşma balonları */
+.mkt-chat {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 1.4rem;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 24px 50px -22px rgba(15, 23, 42, 0.22);
+}
+.mkt-chat__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  padding-bottom: 0.9rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.mkt-chat__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px 1px rgba(34, 197, 94, 0.6);
+}
+.mkt-bubble {
+  max-width: 82%;
+  padding: 0.7rem 0.95rem;
+  border-radius: 14px;
+  margin-bottom: 0.7rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.mkt-bubble--patient {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-bottom-left-radius: 4px;
+}
+.mkt-bubble--ai {
+  margin-left: auto;
+  color: #0b3a54;
+  background: linear-gradient(180deg, #e0f2fe, #d6ecfb);
+  border: 1px solid #bfe0ee;
+  border-bottom-right-radius: 4px;
+}
+.mkt-chat__meta {
+  margin-top: 0.6rem;
+  font-size: 0.76rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Testimonial kartları */
+.mkt-testi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.mkt-testi__metric {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+.mkt-testi__label {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.mkt-testi__quote {
+  margin-top: 0.7rem;
+  font-size: 0.92rem;
+  color: var(--text);
+  flex: 1;
+}
+.mkt-testi__who {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* UKK akordiyon */
+.mkt-faq {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: 0 12px 30px -18px rgba(15, 23, 42, 0.16);
+}
+.mkt-faq__item + .mkt-faq__item {
+  border-top: 1px solid var(--line);
+}
+.mkt-faq__q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.3rem;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-weight: 650;
+  font-size: 0.98rem;
+  text-align: left;
+  color: var(--text);
+  cursor: pointer;
+}
+.mkt-faq__item.is-open .mkt-faq__q {
+  color: var(--accent);
+}
+.mkt-faq__icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background: var(--paper);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.mkt-faq__a {
+  padding: 0 1.3rem 1.3rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* CTA-nauha */
+.mkt-band {
+  background: linear-gradient(120deg, #0f172a, #1d3a5f);
+  color: #fff;
+}
+.mkt-band__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 48px 0;
+  flex-wrap: wrap;
+}
+.mkt-band h2 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+}
+.mkt-band p {
+  margin-top: 0.4rem;
+  color: var(--on-dark-muted);
 }

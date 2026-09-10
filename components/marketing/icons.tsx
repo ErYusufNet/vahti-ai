@@ -57,3 +57,33 @@ export const IconOutbound = (p: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+
+export const IconClock = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...b} {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5l3 2" />
+  </svg>
+);
+
+export const IconRepeat = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...b} {...p}>
+    <path d="M17 2l4 4-4 4" />
+    <path d="M3 11v-1a4 4 0 0 1 4-4h14" />
+    <path d="M7 22l-4-4 4-4" />
+    <path d="M21 13v1a4 4 0 0 1-4 4H3" />
+  </svg>
+);
+
+export const IconCalendarX = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...b} {...p}>
+    <rect x="3" y="4" width="18" height="18" rx="2" />
+    <path d="M3 10h18M8 2v4M16 2v4M10 14l4 4M14 14l-4 4" />
+  </svg>
+);
+
+export const IconArchive = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...b} {...p}>
+    <rect x="3" y="4" width="18" height="4" rx="1" />
+    <path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8M10 12h4" />
+  </svg>
+);
