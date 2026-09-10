@@ -1,55 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useAgentChat } from "@/lib/useAgentChat";
 
-type Turn = { role: "user" | "assistant"; content: string };
-type ApiResult = {
-  reply: string;
-  language: string;
-  mode: "live" | "mock";
-  model: string | null;
-  note?: string;
-  toolCalls: { name: string }[];
-};
-
-/** Görev 2 + 7: agentin testinäyttö. Kutsuu POST /api/chat. */
+/** Görev 2 + 7: agentin testinäyttö. Jakaa logiikan demon kanssa (useAgentChat). */
 export function TestChat() {
   const t = useTranslations("AiAssistant");
-  const [turns, setTurns] = useState<Turn[]>([]);
-  const [input, setInput] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [meta, setMeta] = useState<ApiResult | null>(null);
-  const logRef = useRef<HTMLDivElement>(null);
-
-  async function send() {
-    const text = input.trim();
-    if (!text || busy) return;
-    const next: Turn[] = [...turns, { role: "user", content: text }];
-    setTurns(next);
-    setInput("");
-    setBusy(true);
-    try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ messages: next }),
-      });
-      const data: ApiResult = await res.json();
-      setMeta(data);
-      setTurns((cur) => [...cur, { role: "assistant", content: data.reply ?? "—" }]);
-    } catch {
-      setTurns((cur) => [
-        ...cur,
-        { role: "assistant", content: "Virhe: agenttiin ei saatu yhteyttä." },
-      ]);
-    } finally {
-      setBusy(false);
-      requestAnimationFrame(() => {
-        logRef.current?.scrollTo(0, logRef.current.scrollHeight);
-      });
-    }
-  }
+  const { turns, input, setInput, busy, meta, send, logRef } = useAgentChat();
 
   return (
     <div>

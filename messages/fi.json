@@ -147,6 +147,24 @@
     "yes": "Kyllä",
     "no": "—"
   },
+  "Demo": {
+    "eyebrow": "Kokeile ilmaiseksi",
+    "title": "Kokeile klinikan tekoälyavustajaa heti",
+    "subtitle": "Kirjoita kysymys niin kuin potilas kysyisi. Ei kirjautumista, ei rekisteröitymistä.",
+    "placeholder": "Kysy vaikka hinnoista tai ajanvarauksesta:",
+    "inputPlaceholder": "Kirjoita potilaan viesti…",
+    "send": "Lähetä",
+    "sending": "Lähetetään…",
+    "typing": "Vahti AI kirjoittaa…",
+    "modeMock": "Mock-tila — lisää ANTHROPIC_API_KEY saadaksesi oikeat Claude-vastaukset",
+    "modeLive": "Yhdistetty Claudeen (Sonnet 5)",
+    "toolCalled": "Työkalu kutsuttu",
+    "s1": "Paljonko hammasimplantti maksaa?",
+    "s2": "Onko teillä aikoja tällä viikolla?",
+    "s3": "Do you also serve patients in English?",
+    "footnote": "Tämä on sama agentti, joka vastaa kanavillasi.",
+    "footnoteCta": "Ota käyttöön omalle klinikalle →"
+  },
   "Pricing": {
     "eyebrow": "Hinnoittelu",
     "title": "Selkeä hinnoittelu",

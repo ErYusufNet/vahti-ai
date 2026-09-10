@@ -147,6 +147,24 @@
     "yes": "Yes",
     "no": "—"
   },
+  "Demo": {
+    "eyebrow": "Try it free",
+    "title": "Try the clinic AI assistant right now",
+    "subtitle": "Type a question the way a patient would. No login, no sign-up.",
+    "placeholder": "Ask about prices or booking, for example:",
+    "inputPlaceholder": "Type a patient message…",
+    "send": "Send",
+    "sending": "Sending…",
+    "typing": "Vahti AI is typing…",
+    "modeMock": "Mock mode — add ANTHROPIC_API_KEY for real Claude replies",
+    "modeLive": "Connected to Claude (Sonnet 5)",
+    "toolCalled": "Tool called",
+    "s1": "How much is a dental implant?",
+    "s2": "Do you have any slots this week?",
+    "s3": "Puhutteko myös suomea?",
+    "footnote": "This is the same agent that answers on your channels.",
+    "footnoteCta": "Set it up for your clinic →"
+  },
   "Pricing": {
     "eyebrow": "Pricing",
     "title": "Straightforward pricing",
