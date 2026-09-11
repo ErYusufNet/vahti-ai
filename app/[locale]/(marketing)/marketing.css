@@ -1215,6 +1215,172 @@
   border-radius: 10px;
 }
 
+/* --- Sesli demo -välilehdet (Kirjoita / Puhu ääneen) --- */
+.mkt-demo-tabs {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+.mkt-demo-tab {
+  flex: 1;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 10px;
+  padding: 0.55rem 0.8rem;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+.mkt-demo-tab.is-active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* --- Sesli demo (selaimen mikrofoni, ei Twilioa) --- */
+.mkt-voicedemo {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 24px 50px -24px rgba(15, 23, 42, 0.22);
+  padding: 1.6rem 1.3rem;
+}
+.mkt-voicedemo__controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  text-align: center;
+}
+.mkt-voicedemo__langs {
+  display: flex;
+  gap: 0.4rem;
+}
+.mkt-voicedemo__lang {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+.mkt-voicedemo__lang.is-active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: #eef4ff;
+}
+.mkt-voicedemo__lang:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.mkt-voicedemo__mic {
+  width: 76px;
+  height: 76px;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.6);
+  transition: transform 0.15s ease;
+}
+.mkt-voicedemo__mic svg {
+  width: 30px;
+  height: 30px;
+}
+.mkt-voicedemo__mic:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+.mkt-voicedemo__mic:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.mkt-voicedemo__mic.is-recording {
+  background: #c23b3b;
+  box-shadow: 0 10px 30px -10px rgba(194, 59, 59, 0.6);
+  animation: mkt-voicedemo-pulse 1.4s ease-in-out infinite;
+}
+@keyframes mkt-voicedemo-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(194, 59, 59, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(194, 59, 59, 0);
+  }
+}
+.mkt-voicedemo__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 22px;
+}
+.mkt-voicedemo__bars span {
+  width: 4px;
+  border-radius: 2px;
+  background: var(--accent);
+  transition: height 0.1s ease;
+}
+.mkt-voicedemo__status {
+  font-size: 0.85rem;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+.mkt-voicedemo__error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #f2d4ac;
+  background: #fdf0e3;
+  color: #9a5b12;
+  font-size: 0.82rem;
+}
+.mkt-voicedemo__error button {
+  border: none;
+  background: none;
+  color: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.mkt-voicedemo__log {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.mkt-voicedemo__caption-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+.mkt-voicedemo__replay audio {
+  width: 100%;
+  margin-top: 0.3rem;
+}
+.mkt-voicedemo__privacy {
+  margin-top: 1.2rem;
+  font-size: 0.76rem;
+  color: var(--muted);
+  text-align: center;
+}
+
 /* ===========================================================================
    GÖREV B + E — lomakkeet (kumppanit / yhteystiedot)
    =========================================================================== */

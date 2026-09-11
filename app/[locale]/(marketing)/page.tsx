@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/marketing/Reveal";
 import { RevenueCalculator } from "@/components/marketing/RevenueCalculator";
 import { PricingTable } from "@/components/marketing/PricingTable";
+import { VoiceDemo } from "@/components/marketing/VoiceDemo";
 import {
   IconPhone,
   IconChat,
@@ -99,6 +100,19 @@ export default async function LandingPage() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 4.5 — SESLI DEMO (selaimen mikrofoni, ei Twilioa) */}
+      <section className="mkt-section" id="voice-demo" style={{ paddingTop: 0 }}>
+        <div className="mkt-shell mkt-shell--narrow">
+          <Reveal className="mkt-section__head mkt-section__head--center">
+            <h2>{t("voiceDemo.title")}</h2>
+            <p className="mkt-section__sub">{t("voiceDemo.subtitle")}</p>
+          </Reveal>
+          <Reveal>
+            <VoiceDemo />
+          </Reveal>
         </div>
       </section>
 

@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/marketing/Reveal";
 import { Faq } from "@/components/marketing/Faq";
+import { VoiceDemo } from "@/components/marketing/VoiceDemo";
 import {
   IconClock,
   IconRepeat,
@@ -113,6 +114,19 @@ export default async function ForClinicsPage() {
               </div>
             ))}
             <div className="mkt-chat__meta">{t("chatMeta")}</div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Sesli demo (selaimen mikrofoni, ei Twilioa) */}
+      <section className="mkt-section">
+        <div className="mkt-shell mkt-shell--narrow">
+          <Reveal className="mkt-section__head mkt-section__head--center">
+            <h2>{t("voiceDemoTitle")}</h2>
+            <p className="mkt-section__sub">{t("voiceDemoSubtitle")}</p>
+          </Reveal>
+          <Reveal>
+            <VoiceDemo />
           </Reveal>
         </div>
       </section>
