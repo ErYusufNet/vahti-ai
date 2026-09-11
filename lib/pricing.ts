@@ -55,6 +55,18 @@ export const PRICING_ROWS: PricingRow[] = [
     featured: true,
     values: { essential: "valConvE", professional: "valConvP", business: "valConvB", enterprise: "valConvX" },
   },
+  {
+    kind: "value",
+    label: "rowVoiceMinutes",
+    featured: true,
+    values: { essential: "valVoiceMinE", professional: "valVoiceMinP", business: "valVoiceMinB", enterprise: "valVoiceMinX" },
+  },
+  {
+    kind: "value",
+    label: "rowWhatsappMessages",
+    featured: true,
+    values: { essential: "valWaMsgE", professional: "valWaMsgP", business: "valWaMsgB", enterprise: "valWaMsgX" },
+  },
   { kind: "bool", label: "rowWhatsapp", featured: true, from: "essential" },
   { kind: "bool", label: "rowWebchat", from: "essential" },
   { kind: "bool", label: "rowVoiceIn", featured: true, from: "professional" },
@@ -85,3 +97,24 @@ export const PRICING_ROWS: PricingRow[] = [
 export function planIncludes(from: PlanId, plan: PlanId): boolean {
   return PLAN_ORDER.indexOf(plan) >= PLAN_ORDER.indexOf(from);
 }
+
+/**
+ * GÖREV C/D — kuukausikiintiöt (ääni-AI minuutit + WhatsApp-viestit) per paketti.
+ * `null` = rajaton (Enterprise). Tästä lasketaan sekä /pricing-sivun rivit että
+ * Asetukset → Käyttö -välilehden prosenttipalkit (lib/usage.ts).
+ */
+export const PLAN_LIMITS: Record<
+  PlanId,
+  { voiceMinutes: number | null; whatsappMessages: number | null }
+> = {
+  essential: { voiceMinutes: 200, whatsappMessages: 500 },
+  professional: { voiceMinutes: 600, whatsappMessages: 1500 },
+  business: { voiceMinutes: 2000, whatsappMessages: 5000 },
+  enterprise: { voiceMinutes: null, whatsappMessages: null },
+};
+
+/** Ylityshinnat, kun kuukausikiintiö ylittyy (näytetään dipnottina /pricing-sivulla). */
+export const OVERAGE_RATE = {
+  voicePerMinEur: "0,15–0,20 €",
+  whatsappPerMsgEur: "0,02 €",
+};

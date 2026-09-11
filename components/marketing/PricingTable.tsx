@@ -98,6 +98,7 @@ export async function PricingTable({ featuredOnly = false }: { featuredOnly?: bo
         </tbody>
       </table>
       <p className="mkt-pricing__vat">{t("vat")}</p>
+      {!featuredOnly && <p className="mkt-pricing__vat">{t("overageNote")}</p>}
     </div>
   );
 }
