@@ -16,6 +16,8 @@ export async function GET() {
     googleCalendar: s.googleCalendar,
     embeddings: s.embeddings,
     twilio: s.twilio,
+    soniox: s.soniox,
+    // Säilytetty vertailua varten — eivät enää kytkettynä puhelinvirtaan.
     deepgram: s.deepgram,
     elevenlabs: s.elevenlabs,
   });
