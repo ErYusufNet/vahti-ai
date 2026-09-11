@@ -1,6 +1,10 @@
 /**
  * Görev 9 — puheentunnistus (STT) Deepgramilla (OIKEA API, raaka HTTP).
  *
+ * Soniox'a geçildi — puhelinvirta käyttää nyt lib/voice/soniox-stt.ts:ää.
+ * Tämä tiedosto on jätetty ennalleen mahdollista myöhempää vertailua varten,
+ * eikä se ole enää kytketty mihinkään webhookiin.
+ *
  * POST https://api.deepgram.com/v1/listen  (Authorization: Token <key>)
  * Malli `nova-2` + `detect_language` → suomi ja englanti.
  * Ilman `DEEPGRAM_API_KEY`:tä palauttaa `{ configured: false }` ja kutsuja

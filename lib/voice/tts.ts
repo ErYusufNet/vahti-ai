@@ -1,6 +1,10 @@
 /**
  * Görev 9 — puhesynteesi (TTS) ElevenLabsilla (OIKEA API).
  *
+ * Soniox'a geçildi — puhelinvirta käyttää nyt lib/voice/soniox-tts.ts:ää.
+ * Tämä tiedosto on jätetty ennalleen mahdollista myöhempää vertailua varten,
+ * eikä se ole enää kytketty mihinkään webhookiin.
+ *
  * Malli `eleven_multilingual_v2` → suomi + englanti.
  * Ilman `ELEVENLABS_API_KEY`:tä palauttaa `null`, jolloin kutsuja käyttää
  * Twilion omaa <Say>-ääntä.
