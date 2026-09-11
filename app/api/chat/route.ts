@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { runAgent, type ChatMsg } from "@/lib/agent/claude";
+import { logUsage } from "@/lib/usage";
 
 /**
  * Görev 2 — POST /api/chat
@@ -43,6 +44,7 @@ export async function POST(req: Request) {
 
   try {
     const result = await runAgent(messages);
+    await logUsage("chat", 1); // GÖREV C — käyttöseuranta
     return NextResponse.json(result);
   } catch (err) {
     console.error("[/api/chat] virhe:", err);

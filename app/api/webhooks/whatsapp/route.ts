@@ -8,6 +8,7 @@ import {
   isWhatsAppConfigured,
 } from "@/lib/integrations/whatsapp";
 import { env } from "@/lib/env";
+import { logUsage } from "@/lib/usage";
 
 /**
  * Görev 5 — WhatsApp Business Cloud API -webhook.
@@ -81,6 +82,9 @@ export async function POST(req: Request) {
     userText: inbound.text,
     aiText: result.reply,
   });
+
+  // GÖREV C — käyttöseuranta: yksi vaihdettu WhatsApp-viesti.
+  await logUsage("whatsapp", 1);
 
   return NextResponse.json({
     ok: true,
