@@ -1,9 +1,9 @@
 /**
- * Görev 9 — TwiML-rakennusapurit. Puhe tuotetaan ElevenLabsilla jos avain on,
+ * Görev 9 — TwiML-rakennusapurit. Puhe tuotetaan Sonioxilla jos avain on,
  * muuten Twilion omalla <Say>-äänellä.
  */
 import { twilio } from "./twilio";
-import { synthesizeSpeech } from "./tts";
+import { synthesizeSpeech } from "./soniox-tts";
 import { putAudio } from "./store";
 import { env } from "@/lib/env";
 
@@ -16,27 +16,27 @@ export function newVoiceResponse(): VoiceResponse {
 const sayLang = (language: string) =>
   language.startsWith("en") ? "en-US" : "fi-FI";
 
-/** Lisää puhetta vastaukseen: <Play> (ElevenLabs) tai <Say> (Twilio). */
+/** Lisää puhetta vastaukseen: <Play> (Soniox TTS) tai <Say> (Twilio). */
 export async function speak(
   vr: VoiceResponse,
   text: string,
   language = "fi",
 ): Promise<void> {
-  const mp3 = await synthesizeSpeech(text);
-  if (mp3) {
-    const id = putAudio(mp3, "audio/mpeg");
+  const wav = await synthesizeSpeech(text, language);
+  if (wav) {
+    const id = putAudio(wav, "audio/wav");
     vr.play(`${env.appBaseUrl()}/api/voice/audio/${id}`);
   } else {
     vr.say({ language: sayLang(language) }, text);
   }
 }
 
-/** Lisää seuraavan syötteen keräys: <Record> (Deepgram) tai <Gather> (Twilio STT). */
+/** Lisää seuraavan syötteen keräys: <Record> (Soniox STT) tai <Gather> (Twilio STT). */
 export function collectInput(
   vr: VoiceResponse,
-  opts: { deepgram: boolean; language?: string },
+  opts: { soniox: boolean; language?: string },
 ): void {
-  if (opts.deepgram) {
+  if (opts.soniox) {
     vr.record({
       action: `${env.appBaseUrl()}/api/webhooks/twilio/recording`,
       method: "POST",

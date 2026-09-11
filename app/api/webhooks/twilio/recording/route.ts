@@ -4,12 +4,14 @@ import {
   validateTwilioSignature,
   downloadTwilioRecording,
 } from "@/lib/voice/twilio";
-import { transcribeAudio, isDeepgramConfigured } from "@/lib/voice/stt";
+import { transcribeStream, isSonioxSttConfigured } from "@/lib/voice/soniox-stt";
 import { handleVoiceTurn } from "@/lib/voice/pipeline";
+import { logUsage } from "@/lib/usage";
 
 /**
  * Görev 9 — Twilio <Record action> -takaisinkutsu.
- * Lataa nauhoituksen → Deepgram STT → Claude → puhuu vastauksen → kerää seuraavan.
+ * Lataa nauhoituksen → Soniox STT → Claude → puhuu vastauksen → kerää seuraavan.
+ * GÖREV C: kirjaa nauhoituksen keston (min) "usage_logs"-tauluun (tip: "ses").
  */
 export async function POST(req: Request) {
   const url = req.url;
@@ -24,29 +26,33 @@ export async function POST(req: Request) {
   const callSid = params.CallSid ?? "unknown";
   const from = params.From ?? "unknown";
   const recordingUrl = params.RecordingUrl;
+  const recordingSeconds = Number(params.RecordingDuration ?? "0");
+  if (recordingSeconds > 0) {
+    await logUsage("ses", recordingSeconds / 60);
+  }
 
   const vr = newVoiceResponse();
 
   try {
-    if (!recordingUrl || !isDeepgramConfigured()) {
+    if (!recordingUrl || !isSonioxSttConfigured()) {
       await speak(vr, "Valitettavasti en saanut puhettasi. Yritetään uudelleen.", "fi");
-      collectInput(vr, { deepgram: isDeepgramConfigured(), language: "fi" });
+      collectInput(vr, { soniox: isSonioxSttConfigured(), language: "fi" });
       return xml(vr);
     }
 
-    const { buf, contentType } = await downloadTwilioRecording(recordingUrl);
-    const stt = await transcribeAudio(buf, contentType);
+    const { buf } = await downloadTwilioRecording(recordingUrl);
+    const stt = await transcribeStream(buf);
     const transcript = stt.configured ? stt.transcript : "";
 
     if (!transcript) {
       await speak(vr, "En kuullut mitään. Voitko toistaa?", "fi");
-      collectInput(vr, { deepgram: true, language: "fi" });
+      collectInput(vr, { soniox: true, language: "fi" });
       return xml(vr);
     }
 
     const turn = await handleVoiceTurn(callSid, transcript, from);
     await speak(vr, turn.reply, turn.language);
-    collectInput(vr, { deepgram: true, language: turn.language });
+    collectInput(vr, { soniox: true, language: turn.language });
     return xml(vr);
   } catch (err) {
     console.error("[twilio/recording] virhe:", err);

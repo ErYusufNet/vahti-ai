@@ -26,14 +26,14 @@ export async function POST(req: Request) {
 
   if (!transcript) {
     await speak(vr, "En kuullut mitään. Voitko toistaa?", "fi");
-    collectInput(vr, { deepgram: false, language: "fi" });
+    collectInput(vr, { soniox: false, language: "fi" });
     return new NextResponse(vr.toString(), { headers: { "content-type": "text/xml" } });
   }
 
   try {
     const turn = await handleVoiceTurn(callSid, transcript, from);
     await speak(vr, turn.reply, turn.language);
-    collectInput(vr, { deepgram: false, language: turn.language });
+    collectInput(vr, { soniox: false, language: turn.language });
   } catch (err) {
     console.error("[twilio/gather] virhe:", err);
     await speak(vr, "Tekninen virhe. Soitathan hetken kuluttua uudelleen.", "fi");

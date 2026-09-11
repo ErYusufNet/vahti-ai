@@ -1,10 +1,11 @@
 /**
  * Görev 9 — puhelun orkestrointi (ei-striimaava):
- *   nauhoitus → Deepgram STT → Claude-agentti → ElevenLabs TTS → Twilio <Play>
+ *   nauhoitus → Soniox STT → Claude-agentti → Soniox TTS → Twilio <Play>
  *
  * Striimauksen (matala viive) voi lisätä myöhemmin Twilio Media Streams +
- * Deepgram live -yhteydellä; tämä on toimeksiannon mukainen "aloita
- * yksinkertaisesta" -versio.
+ * Sonioxin reaaliaikaisella WebSocket-yhteydellä (lib/voice/soniox-stt.ts
+ * tukee jo async-striimin syöttöä); tämä on toimeksiannon mukainen
+ * "aloita yksinkertaisesta" -versio (kokonainen nauhoitus kerrallaan).
  */
 import { runAgent, type ChatMsg } from "@/lib/agent/claude";
 import { appendConversationTurn } from "@/lib/conversations";
@@ -15,9 +16,11 @@ export function voiceIntegrationSummary() {
   const s = integrationStatus();
   return {
     twilio: s.twilio,
+    soniox: s.soniox,
+    anthropic: s.anthropic,
+    // Säilytetty vertailua varten — eivät enää käytössä puhelinvirrassa.
     deepgram: s.deepgram,
     elevenlabs: s.elevenlabs,
-    anthropic: s.anthropic,
   };
 }
 
