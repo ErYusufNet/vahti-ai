@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import { redirect } from "@/i18n/navigation";
 import { Sidebar } from "@/components/dashboard/Sidebar";
 import { Topbar } from "@/components/dashboard/Topbar";
+import { UsageBanner } from "@/components/dashboard/UsageBanner";
 import "./dashboard.css";
 
 /**
@@ -22,7 +23,10 @@ export default async function DashboardLayout({ children }: { children: ReactNod
       <Sidebar />
       <div className="dash-main">
         <Topbar />
-        <div className="dash-content">{children}</div>
+        <div className="dash-content">
+          <UsageBanner />
+          {children}
+        </div>
       </div>
     </div>
   );
