@@ -3,8 +3,11 @@ import { clinic, users } from "@/lib/mock/data";
 import { integrationStatus, env } from "@/lib/env";
 import { isDbAvailable } from "@/lib/db";
 import { getBackupNumber, assigneeCounts } from "@/lib/callbacks";
+import { getMonthlyUsage } from "@/lib/usage";
 import { ShareLinkCard } from "@/components/dashboard/ShareLinkCard";
 import { BackupNumberForm } from "@/components/dashboard/BackupNumberForm";
+import { SettingsTabs } from "@/components/dashboard/SettingsTabs";
+import { UsageMeter } from "@/components/dashboard/UsageMeter";
 
 /** Asetukset — klinikan tiedot ja tiimi (mock, lukutila). */
 export default async function SettingsPage() {
@@ -30,13 +33,16 @@ export default async function SettingsPage() {
     { name: "Google Calendar", live: st.googleCalendar, task: "6" },
     { name: "Embeddings (RAG)", live: st.embeddings, task: "7" },
     { name: "Twilio (puhelut)", live: st.twilio, task: "9" },
-    { name: "Deepgram (STT)", live: st.deepgram, task: "9" },
-    { name: "ElevenLabs (TTS)", live: st.elevenlabs, task: "9" },
+    { name: "Soniox (STT + TTS)", live: st.soniox, task: "9" },
+    // Säilytetty vertailua varten — eivät enää kytkettynä puhelinvirtaan.
+    { name: "Deepgram (STT, ei käytössä)", live: st.deepgram, task: "9" },
+    { name: "ElevenLabs (TTS, ei käytössä)", live: st.elevenlabs, task: "9" },
   ];
 
   const backupNumber = await getBackupNumber();
   const dbUp = await isDbAvailable();
   const cbCounts = await assigneeCounts();
+  const usage = await getMonthlyUsage();
 
   const roleLabel = (r: string) =>
     r === "omistaja"
@@ -45,15 +51,8 @@ export default async function SettingsPage() {
         ? t("roleVastaanotto")
         : t("roleHoitaja");
 
-  return (
-    <div>
-      <h1 className="dash-page-title">{t("title")}</h1>
-      <p className="dash-page-sub">{t("subtitle")}</p>
-
-      <div className="notice" style={{ marginBottom: "1.2rem" }}>
-        {t("readonlyNotice")}
-      </div>
-
+  const generalTab = (
+    <>
       <div className="card" style={{ marginBottom: "1.2rem" }}>
         <div className="section-title">{t("generalTitle")}</div>
         <div className="form-grid">
@@ -111,6 +110,11 @@ export default async function SettingsPage() {
             ))}
           </tbody>
         </table>
+        {!st.soniox && (
+          <div className="notice" style={{ margin: "0 1.1rem 1rem" }}>
+            {t("voiceNotConfigured")}
+          </div>
+        )}
       </div>
 
       <div className="card" style={{ padding: 0, overflow: "hidden" }}>
@@ -141,6 +145,53 @@ export default async function SettingsPage() {
           </tbody>
         </table>
       </div>
+    </>
+  );
+
+  const usageTab = (
+    <div className="card">
+      <div className="section-title">{t("usageTitle")}</div>
+      <p className="dash-page-sub">
+        {t("usagePlanLabel")}: <strong>{fields.find((f) => f.label === t("fieldPlan"))?.value}</strong>
+        {usage.backend === "mock" && ` · ${t("usageMockNote")}`}
+      </p>
+
+      <div style={{ marginTop: "1.2rem" }}>
+        <UsageMeter
+          label={t("usageVoiceLabel")}
+          used={usage.voiceMinutes}
+          unit={t("usageMinutesUnit")}
+          limit={usage.voiceLimit}
+          pct={usage.voicePct}
+          unlimitedLabel={t("usageUnlimited")}
+        />
+        <UsageMeter
+          label={t("usageWhatsappLabel")}
+          used={usage.whatsappMessages}
+          unit={t("usageMessagesUnit")}
+          limit={usage.whatsappLimit}
+          pct={usage.whatsappPct}
+          unlimitedLabel={t("usageUnlimited")}
+        />
+      </div>
+    </div>
+  );
+
+  return (
+    <div>
+      <h1 className="dash-page-title">{t("title")}</h1>
+      <p className="dash-page-sub">{t("subtitle")}</p>
+
+      <div className="notice" style={{ marginBottom: "1.2rem" }}>
+        {t("readonlyNotice")}
+      </div>
+
+      <SettingsTabs
+        tabs={[
+          { id: "general", label: t("tabGeneral"), content: generalTab },
+          { id: "usage", label: t("tabUsage"), content: usageTab },
+        ]}
+      />
     </div>
   );
 }

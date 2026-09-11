@@ -618,3 +618,73 @@
   padding: 10px;
   line-height: 0;
 }
+
+/* GÖREV C — Asetukset-välilehdet (Yleiset / Käyttö) */
+.settings-tabs {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.settings-tab {
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.55rem 0.2rem;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+.settings-tab:hover {
+  color: var(--text);
+}
+.settings-tab.is-active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* GÖREV C — käyttö-/kiintiöpalkit */
+.usage-meter {
+  margin-bottom: 1.1rem;
+}
+.usage-meter__head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.84rem;
+  margin-bottom: 0.35rem;
+}
+.usage-meter__pct {
+  color: var(--muted);
+}
+.usage-meter__track {
+  height: 8px;
+  border-radius: 5px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.usage-meter__fill {
+  height: 100%;
+  border-radius: 5px 0 0 5px;
+  background: var(--accent);
+}
+.usage-meter__fill.is-warn {
+  background: #c9861a;
+}
+.usage-meter__fill.is-over {
+  background: #c23b3b;
+}
+
+/* GÖREV C — 80 %:n kiintiövaroitus (koko dashboard) */
+.usage-banner {
+  font-size: 0.82rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid #f2d4ac;
+  background: #fdf0e3;
+  color: #9a5b12;
+  margin: 0 0 1.1rem;
+}
