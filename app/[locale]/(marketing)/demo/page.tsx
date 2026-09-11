@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { DemoChat } from "@/components/marketing/DemoChat";
+import { DemoWidget } from "@/components/marketing/DemoWidget";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Demo");
@@ -28,7 +28,7 @@ export default async function DemoPage() {
 
       <section className="mkt-section mkt-section--tight">
         <div className="mkt-shell mkt-shell--narrow">
-          <DemoChat />
+          <DemoWidget />
           <p className="mkt-section__sub" style={{ textAlign: "center", marginTop: "1.4rem" }}>
             {t("footnote")}{" "}
             <Link href="/signup" style={{ color: "var(--accent)", fontWeight: 600 }}>
