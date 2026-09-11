@@ -45,13 +45,20 @@ export const env = {
   cronEnabled: () => (get("ENABLE_CRON") ?? "true") !== "false",
   appBaseUrl: () => get("APP_BASE_URL") ?? "http://localhost:3000",
 
-  // Görev 9 — Sesli AI
+  // Görev 9 — Sesli AI (Twilio-siirto)
   twilioSid: () => get("TWILIO_ACCOUNT_SID"),
   twilioAuthToken: () => get("TWILIO_AUTH_TOKEN"),
   twilioPhoneNumber: () => get("TWILIO_PHONE_NUMBER"),
+
+  // Soniox'a geçildi — Deepgram/ElevenLabs tässä alla säilytetään
+  // vertailua varten (ks. lib/voice/stt.ts + tts.ts), eivät enää käytössä.
   deepgramKey: () => get("DEEPGRAM_API_KEY"),
   elevenLabsKey: () => get("ELEVENLABS_API_KEY"),
   elevenLabsVoiceId: () => get("ELEVENLABS_VOICE_ID") ?? "21m00Tcm4TlvDq8ikWAM",
+
+  // Sesli AI — Soniox (STT + TTS), oletusintegraatio Deepgram/ElevenLabsin tilalla.
+  sonioxKey: () => get("SONIOX_API_KEY"),
+  sonioxVoice: () => get("SONIOX_VOICE") ?? "Adrian",
 
   // Tietokanta
   databaseUrl: () => get("DATABASE_URL"),
@@ -64,7 +71,8 @@ export type IntegrationName =
   | "embeddings"
   | "twilio"
   | "deepgram"
-  | "elevenlabs";
+  | "elevenlabs"
+  | "soniox";
 
 export function integrationStatus(): Record<IntegrationName, boolean> {
   return {
@@ -80,8 +88,10 @@ export function integrationStatus(): Record<IntegrationName, boolean> {
         ? !!env.voyageKey()
         : !!env.openaiKey(),
     twilio: !!(env.twilioSid() && env.twilioAuthToken() && env.twilioPhoneNumber()),
+    // Deepgram/ElevenLabs: säilytetty vertailua varten, eivät enää kytkettynä puhelinvirtaan.
     deepgram: !!env.deepgramKey(),
     elevenlabs: !!env.elevenLabsKey(),
+    soniox: !!env.sonioxKey(),
   };
 }
 
