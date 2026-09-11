@@ -44,6 +44,10 @@
       "multilangTitle": "Multilingual support",
       "multilangDesc": "Detects the language automatically and replies in kind — Finnish and English today, Swedish coming."
     },
+    "voiceDemo": {
+      "title": "Listen to how Vahti AI answers",
+      "subtitle": "Press the microphone and ask something out loud — the same AI that answers your customers. No sign-up, no phone line."
+    },
     "channels": {
       "title": "Every channel, one front desk",
       "subtitle": "Patients reach out however they like. Vahti AI is there on every channel.",
@@ -165,7 +169,24 @@
     "footnote": "This is the same agent that answers on your channels.",
     "footnoteCta": "Set it up for your clinic →",
     "aiDisclosure": "You are talking to an AI. You can ask for a human at any time.",
-    "askHuman": "Ask for a human"
+    "askHuman": "Ask for a human",
+    "tabText": "Type",
+    "tabVoice": "Speak",
+    "languageLabel": "Language",
+    "languageAuto": "Auto",
+    "micChecking": "Checking…",
+    "micIdleHint": "Press the microphone and ask something out loud.",
+    "micListening": "Listening… (up to 20 s)",
+    "micProcessing": "Processing…",
+    "dismiss": "Dismiss",
+    "youSaid": "You said",
+    "aiReplied": "Vahti AI replied",
+    "privacyNote": "Your voice recording isn't stored — it's processed and discarded right after the reply.",
+    "errUnsupported": "Your browser doesn't support microphone recording. Try another browser or the written chat.",
+    "errNotConfigured": "Voice demo isn't available right now — try the written chat instead.",
+    "errPermissionDenied": "Microphone access was denied. Allow the microphone in your browser settings and try again.",
+    "errEmpty": "I didn't hear anything. Try speaking closer to the microphone.",
+    "errProcessing": "Processing the audio failed. Try again or use the written chat."
   },
   "Partners": {
     "eyebrow": "Partner program",
@@ -283,6 +304,8 @@
     "priceBusiness": "€749",
     "priceEnterprise": "Custom",
     "rowConversations": "AI conversations / mo",
+    "rowVoiceMinutes": "Voice AI (minutes / mo)",
+    "rowWhatsappMessages": "WhatsApp messages / mo",
     "rowWhatsapp": "WhatsApp & chat",
     "rowWebchat": "Website chat",
     "rowVoiceIn": "Voice AI — inbound calls",
@@ -310,7 +333,16 @@
     "valSupE": "Email",
     "valSupP": "Email + chat",
     "valSupB": "Priority",
-    "valSupX": "Dedicated contact"
+    "valSupX": "Dedicated contact",
+    "valVoiceMinE": "200 min",
+    "valVoiceMinP": "600 min",
+    "valVoiceMinB": "2,000 min",
+    "valVoiceMinX": "Unlimited",
+    "valWaMsgE": "500",
+    "valWaMsgP": "1,500",
+    "valWaMsgB": "5,000",
+    "valWaMsgX": "Unlimited",
+    "overageNote": "Usage beyond quota: €0.15–0.20/min voice, €0.02/WhatsApp message."
   },
   "ForClinics": {
     "eyebrow": "Healthcare clinics",
@@ -337,6 +369,8 @@
     "chatPatient3": "14:00 works.",
     "chatAi3": "Done — I've booked your assessment visit for Thursday 18 Sept at 14:00. I'll send a reminder the day before. See you then!",
     "chatMeta": "Response time 8 seconds · 22:14 · no queue, no callback",
+    "voiceDemoTitle": "Listen to how Vahti AI answers",
+    "voiceDemoSubtitle": "Press the microphone and ask something out loud — the same AI answers back by speaking, in Finnish or English.",
     "proofTitle": "Results from clinics",
     "proofSubtitle": "Examples of what a faster reply and automatic follow-up do. Figures are illustrative.",
     "proof1Metric": "8 h → 4 min",
@@ -623,7 +657,22 @@
     "backupDemoNote": "Not saved — requires a database (DATABASE_URL + npm run db:push).",
     "backupTwilioOn": "Call forwarding to the backup number is active (Twilio).",
     "backupTwilioTodo": "TODO: real call forwarding to the backup number requires TWILIO_ACCOUNT_SID in .env. Without it, forwarding is simulated (shown in the UI).",
-    "teamRoutingNote": "New callback requests are assigned to this team round-robin (visible on the Callback requests tab)."
+    "teamRoutingNote": "New callback requests are assigned to this team round-robin (visible on the Callback requests tab).",
+    "tabGeneral": "General",
+    "tabUsage": "Usage",
+    "voiceNotConfigured": "Voice AI isn't connected yet (SONIOX_API_KEY missing) — continue the conversation in chat or WhatsApp.",
+    "usageTitle": "Usage this month",
+    "usagePlanLabel": "Plan",
+    "usageMockNote": "demo figures (a database is required for real tracking)",
+    "usageVoiceLabel": "Voice AI (minutes / mo)",
+    "usageWhatsappLabel": "WhatsApp messages (per mo)",
+    "usageMinutesUnit": "min",
+    "usageMessagesUnit": "messages",
+    "usageUnlimited": "unlimited",
+    "usageBanner": "You've used {pct}% of your monthly quota ({what}).",
+    "usageWhatVoice": "voice AI",
+    "usageWhatWhatsapp": "WhatsApp",
+    "usageWhatBoth": "voice AI and WhatsApp"
   },
   "Channels": {
     "whatsapp": "WhatsApp",

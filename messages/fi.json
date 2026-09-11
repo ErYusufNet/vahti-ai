@@ -44,6 +44,10 @@
       "multilangTitle": "Monikielinen tuki",
       "multilangDesc": "Tunnistaa kielen automaattisesti ja vastaa samalla kielellä — suomi ja englanti mukana, ruotsi tulossa."
     },
+    "voiceDemo": {
+      "title": "Kuuntele, miten Vahti AI vastaa",
+      "subtitle": "Paina mikrofonia ja kysy jotain ääneen — sama tekoäly, joka vastaa asiakkaillesi. Ei rekisteröitymistä, ei puhelinlinjaa."
+    },
     "channels": {
       "title": "Kaikki kanavat, yksi vastaanotto",
       "subtitle": "Potilas ottaa yhteyttä miten haluaa. Vahti AI on paikalla joka kanavassa.",
@@ -165,7 +169,24 @@
     "footnote": "Tämä on sama agentti, joka vastaa kanavillasi.",
     "footnoteCta": "Ota käyttöön omalle klinikalle →",
     "aiDisclosure": "Olet keskustelemassa tekoälyn kanssa. Voit pyytää ihmistä milloin tahansa.",
-    "askHuman": "Pyydä ihmistä"
+    "askHuman": "Pyydä ihmistä",
+    "tabText": "Kirjoita",
+    "tabVoice": "Puhu ääneen",
+    "languageLabel": "Kieli",
+    "languageAuto": "Automaattinen",
+    "micChecking": "Tarkistetaan…",
+    "micIdleHint": "Paina mikrofonia ja kysy jotain ääneen.",
+    "micListening": "Kuuntelen… (enintään 20 s)",
+    "micProcessing": "Käsitellään…",
+    "dismiss": "Sulje",
+    "youSaid": "Sinä sanoit",
+    "aiReplied": "Vahti AI vastasi",
+    "privacyNote": "Ääninauhoitustasi ei tallenneta — se käsitellään ja poistetaan heti vastauksen jälkeen.",
+    "errUnsupported": "Selaimesi ei tue mikrofonitallennusta. Kokeile toista selainta tai kirjoitettua chattia.",
+    "errNotConfigured": "Sesli demo ei ole juuri nyt käytössä — kokeile kirjoitettua chattia.",
+    "errPermissionDenied": "Mikrofonin käyttöoikeutta ei myönnetty. Salli mikrofoni selaimen asetuksista ja yritä uudelleen.",
+    "errEmpty": "En kuullut mitään. Kokeile puhua lähempänä mikrofonia.",
+    "errProcessing": "Äänen käsittely epäonnistui. Kokeile uudelleen tai käytä kirjoitettua chattia."
   },
   "Partners": {
     "eyebrow": "Kumppaniohjelma",
@@ -283,6 +304,8 @@
     "priceBusiness": "749 €",
     "priceEnterprise": "Räätälöity",
     "rowConversations": "AI-keskustelut / kk",
+    "rowVoiceMinutes": "Ääni-AI (minuuttia / kk)",
+    "rowWhatsappMessages": "WhatsApp-viestejä / kk",
     "rowWhatsapp": "WhatsApp & chat",
     "rowWebchat": "Verkkosivun chat",
     "rowVoiceIn": "Ääni-AI — saapuvat puhelut",
@@ -310,7 +333,16 @@
     "valSupE": "Sähköposti",
     "valSupP": "Sähköposti + chat",
     "valSupB": "Prioriteetti",
-    "valSupX": "Oma yhteyshenkilö"
+    "valSupX": "Oma yhteyshenkilö",
+    "valVoiceMinE": "200 min",
+    "valVoiceMinP": "600 min",
+    "valVoiceMinB": "2 000 min",
+    "valVoiceMinX": "Rajaton",
+    "valWaMsgE": "500",
+    "valWaMsgP": "1 500",
+    "valWaMsgB": "5 000",
+    "valWaMsgX": "Rajaton",
+    "overageNote": "Kiintiön ylittävä käyttö: 0,15–0,20 €/min ääni, 0,02 €/WhatsApp-viesti."
   },
   "ForClinics": {
     "eyebrow": "Terveydenhuollon klinikat",
@@ -337,6 +369,8 @@
     "chatPatient3": "Klo 14 käy hyvin.",
     "chatAi3": "Selvä — varasin sinulle arviokäynnin torstaiksi 18.9. klo 14.00. Lähetän muistutuksen päivää ennen. Tervetuloa!",
     "chatMeta": "Vastausaika 8 sekuntia · kello 22.14 · ei jonoa, ei takaisinsoittoa",
+    "voiceDemoTitle": "Kuuntele, miten Vahti AI vastaa",
+    "voiceDemoSubtitle": "Paina mikrofonia ja kysy jotain ääneen — sama tekoäly vastaa puhumalla, suomeksi tai englanniksi.",
     "proofTitle": "Tuloksia klinikoilta",
     "proofSubtitle": "Esimerkkejä siitä, mitä nopeampi vastaus ja automaattinen seuranta tekevät. Luvut ovat havainnollistavia.",
     "proof1Metric": "8 h → 4 min",
@@ -623,7 +657,22 @@
     "backupDemoNote": "Ei tallennettu — vaatii tietokannan (DATABASE_URL + npm run db:push).",
     "backupTwilioOn": "Soitonsiirto varanumeroon on käytössä (Twilio).",
     "backupTwilioTodo": "TODO: oikea soitonsiirto varanumeroon vaatii TWILIO_ACCOUNT_SID:n .env-tiedostossa. Ilman sitä siirto on simuloitu (arayüzde näytetään).",
-    "teamRoutingNote": "Uudet yhteydenottopyynnöt jaetaan tälle tiimille round-robin -periaatteella (näkyy Yhteydenottopyynnöt-välilehdellä)."
+    "teamRoutingNote": "Uudet yhteydenottopyynnöt jaetaan tälle tiimille round-robin -periaatteella (näkyy Yhteydenottopyynnöt-välilehdellä).",
+    "tabGeneral": "Yleiset",
+    "tabUsage": "Käyttö",
+    "voiceNotConfigured": "Ääni-AI ei ole vielä yhdistetty (SONIOX_API_KEY puuttuu) — jatka keskustelua chatissa tai WhatsAppissa.",
+    "usageTitle": "Kuukauden käyttö",
+    "usagePlanLabel": "Paketti",
+    "usageMockNote": "demo-luvut (vaatii tietokannan oikeaan seurantaan)",
+    "usageVoiceLabel": "Ääni-AI (minuuttia / kk)",
+    "usageWhatsappLabel": "WhatsApp-viestit (kpl / kk)",
+    "usageMinutesUnit": "min",
+    "usageMessagesUnit": "viestiä",
+    "usageUnlimited": "rajaton",
+    "usageBanner": "Olet käyttänyt {pct} % kuukausittaisesta kiintiöstäsi ({what}).",
+    "usageWhatVoice": "ääni-AI",
+    "usageWhatWhatsapp": "WhatsApp",
+    "usageWhatBoth": "ääni-AI ja WhatsApp"
   },
   "Channels": {
     "whatsapp": "WhatsApp",
