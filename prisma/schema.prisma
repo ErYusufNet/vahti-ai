@@ -35,6 +35,7 @@ model Klinik {
   tietopankki      KnowledgeEntry[]
   ajanvaraukset    Appointment[]
   callbackPyynnot  CallbackRequest[]
+  kullanimLoglar   UsageLog[]
 }
 
 /// GÖREV A — selaimen puhelu-widgetistä jätetty yhteydenottopyyntö.
@@ -150,6 +151,21 @@ model Appointment {
 
   @@index([klinikId])
   @@index([alkaa])
+}
+
+/// GÖREV C — käyttö-/kustannusseurannan loki (ääni-AI minuutit, WhatsApp- ja
+/// chat-viestit). `tip`: "ses" | "whatsapp" | "chat". `miktar`: minuutit (ses)
+/// tai kappalemäärä (whatsapp/chat). Kuukausisumma lasketaan lib/usage.ts:ssä.
+model UsageLog {
+  id       String   @id @default(cuid())
+  klinikId String
+  tip      String
+  miktar   Float
+  tarih    DateTime @default(now())
+
+  klinik Klinik @relation(fields: [klinikId], references: [id], onDelete: Cascade)
+
+  @@index([klinikId, tip, tarih])
 }
 
 /// Görev 8 — automaatioajojen loki.
